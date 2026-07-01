@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bakarkhaniii</title>
+  <meta name="description" content="Bakarkhaniii — Build the new way. Webapps, products, and tools.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+
+        <!-- Products dropdown -->
+        <div class="nav-item" id="navProducts">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Products <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Explore our next generation products</h3>
+              <a href="products/index.html" class="dropdown-see-all">See overview</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Products</p>
+              <div class="dropdown-items">
+                <a href="products/trackxpense.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-green">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Trackxpense</span>
+                </a>
+                <a href="products/gupto.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Gupto</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sites dropdown -->
+        <div class="nav-item" id="navSites">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Sites <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Spaces built for the people you love.</h3>
+              <a href="sites/index.html" class="dropdown-see-all">Explore all sites</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Sites</p>
+              <div class="dropdown-items">
+                <a href="sites/attic.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-rose">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24M13 14l1.5 1.5L17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span class="di-name">Attic</span>
+                </a>
+                <a href="sites/yard.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-blue">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5M14 12c2 0 5 1 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Yard</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <a href="#" class="nav-cta">Get started</a>
+    </div>
+  </header>
+
+  <!-- Dropdown backdrop -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="grid-container">
+        <div class="hero-eyebrow">Build the new way</div>
+        <h1 class="hero-title">
+          Apps &amp; products<br>
+          <span class="hero-title-dim">that move fast.</span>
+        </h1>
+        <p class="hero-body">
+          A personal dev hub. Webapps, tools, and experiments — all shipped from one place.
+        </p>
+        <div class="hero-actions">
+          <a href="#webapps" class="btn-primary">Explore webapps</a>
+          <a href="products/index.html" class="btn-ghost">View products <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-bg-blob blob-1"></div>
+        <div class="hero-bg-blob blob-2"></div>
+        <div class="hero-bg-blob blob-3"></div>
+      </div>
+    </section>
+
+    <!-- WEBAPPS -->
+    <section class="section" id="webapps">
+      <div class="grid-container">
+        <div class="section-label">Webapps</div>
+        <h2 class="section-heading">Things you can actually use</h2>
+        <div class="card-grid cols-3">
+          <article class="product-card">
+            <div class="product-card-visual vc-game">
+              <div class="vc-dots">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <h3>Undercover Game</h3>
+              <p>A multiplayer word deduction game. Find the undercover before it's too late.</p>
+              <a href="#" class="card-link">Launch app <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-card-visual vc-dashboard">
+              <div class="vc-bars">
+                <span style="height:40%"></span><span style="height:65%"></span>
+                <span style="height:50%"></span><span style="height:80%"></span>
+                <span style="height:55%"></span><span style="height:90%"></span>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <h3>Dev Dashboard</h3>
+              <p>Monitor your projects, deployments, and analytics from a unified view.</p>
+              <a href="#" class="card-link">Launch app <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-card-visual vc-editor">
+              <div class="vc-code-lines">
+                <span style="width:70%"></span><span style="width:50%"></span>
+                <span style="width:85%"></span><span style="width:40%"></span>
+                <span style="width:60%"></span>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <h3>Code Sandbox</h3>
+              <p>Write, run, and share snippets directly in the browser. No setup required.</p>
+              <a href="#" class="card-link">Launch app <span class="arrow">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section section-alt" id="products">
+      <div class="grid-container">
+        <div class="section-label">Products</div>
+        <h2 class="section-heading">The tools powering everything</h2>
+        <div class="card-grid cols-2">
+          <article class="product-card product-card-lg">
+            <div class="product-card-visual vc-trackxpense">
+              <div class="tx-visual">
+                <div class="tx-number">$2,480</div>
+                <div class="tx-label">This month</div>
+                <div class="tx-bars">
+                  <span style="height:60%"></span><span style="height:40%"></span>
+                  <span style="height:75%"></span><span style="height:55%"></span>
+                  <span style="height:90%"></span><span style="height:45%"></span>
+                  <span style="height:80%"></span>
+                </div>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <div class="product-tag">Product</div>
+              <h3>Trackxpense</h3>
+              <p>Smart expense tracking with categories, charts, and monthly summaries — no spreadsheets needed.</p>
+              <a href="products/trackxpense.html" class="card-link">Learn more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="product-card product-card-lg">
+            <div class="product-card-visual vc-gupto">
+              <div class="gupto-visual">
+                <div class="gupto-lock">
+                  <svg viewBox="0 0 60 70" fill="none"><rect x="8" y="30" width="44" height="34" rx="6" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/><path d="M20 30V20a10 10 0 0120 0v10" stroke="rgba(139,92,246,0.7)" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="47" r="4" fill="rgba(139,92,246,0.7)"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <div class="product-tag">Product</div>
+              <h3>Gupto</h3>
+              <p>Your private vault. Store notes, secrets, and sensitive info — encrypted, local-first, always yours.</p>
+              <a href="products/gupto.html" class="card-link">Learn more <span class="arrow">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SITES -->
+    <section class="section" id="sites">
+      <div class="grid-container">
+        <div class="section-label">Children Sites</div>
+        <h2 class="section-heading">Spaces for the people you care about</h2>
+        <div class="sites-grid">
+          <article class="site-card site-card-attic">
+            <div class="site-card-content">
+              <div class="site-badge">For Couples</div>
+              <h3>Attic</h3>
+              <p>A private shared space for two. Store memories, set reminders, and stay close — just the two of you.</p>
+              <a href="sites/attic.html" class="btn-primary">Visit Attic →</a>
+            </div>
+            <div class="site-card-visual attic-visual">
+              <div class="attic-hearts">
+                <span>♥</span><span>♥</span><span>♥</span>
+              </div>
+            </div>
+          </article>
+          <article class="site-card site-card-yard">
+            <div class="site-card-content">
+              <div class="site-badge">For Friends</div>
+              <h3>Yard</h3>
+              <p>A group space where your squad hangs. Plan events, share lists, and keep up with each other.</p>
+              <a href="sites/yard.html" class="btn-primary btn-yard">Visit Yard →</a>
+            </div>
+            <div class="site-card-visual yard-visual">
+              <div class="yard-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-cta" id="about">
+      <div class="grid-container">
+        <div class="cta-block">
+          <h2 class="cta-heading">Ready to build?</h2>
+          <p class="cta-body">All projects are open. Pick what you need and ship something worth shipping.</p>
+          <div class="cta-actions">
+            <a href="#webapps" class="btn-primary btn-inverse">Get started</a>
+            <a href="about.html" class="btn-ghost btn-ghost-inverse">About us →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-new">
+    <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline">
+          <p>Build the<br>new way.</p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-col-title">Products</div>
+            <a href="products/trackxpense.html">Trackxpense</a>
+            <a href="products/gupto.html">Gupto</a>
+            <a href="products/index.html">All Products</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Sites</div>
+            <a href="sites/attic.html">Attic</a>
+            <a href="sites/yard.html">Yard</a>
+            <a href="sites/index.html">All Sites</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="#">Undercover Game</a>
+            <a href="#">Dev Dashboard</a>
+            <a href="#">Code Sandbox</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="#">Press</a>
+            <a href="#">Changelog</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-brand">Bakarkhaniii</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Blog — Bakarkhaniii</title>
+  <meta name="description" content="Thoughts, updates, and behind-the-scenes of building Bakarkhaniii.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <nav class="nav-links">
+        <div class="nav-item" id="navProducts">
+          <button class="nav-btn" aria-expanded="false">Products <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><p class="dropdown-promo-label">Products</p><h3 class="dropdown-promo-title">Apps built to solve real problems.</h3><a href="products/index.html" class="dropdown-see-all">See all →</a></div>
+            <div class="dropdown-items">
+              <a href="products/trackxpense.html" class="dropdown-item"><span class="di-icon di-green"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Trackxpense</strong><small>Expense tracking, simplified</small></span></a>
+              <a href="products/gupto.html" class="dropdown-item"><span class="di-icon di-purple"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Gupto</strong><small>Private notes & secrets vault</small></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item" id="navSites">
+          <button class="nav-btn" aria-expanded="false">Sites <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><p class="dropdown-promo-label">Children Sites</p><h3 class="dropdown-promo-title">Spaces built for the people you love.</h3><a href="sites/index.html" class="dropdown-see-all">Explore →</a></div>
+            <div class="dropdown-items">
+              <a href="sites/attic.html" class="dropdown-item"><span class="di-icon di-rose"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24M13 14l1.5 1.5L17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Attic</strong><small>A private space for couples</small></span></a>
+              <a href="sites/yard.html" class="dropdown-item"><span class="di-icon di-blue"><svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5M14 12c2 0 5 1 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Yard</strong><small>A shared space for friends</small></span></a>
+            </div>
+          </div>
+        </div>
+        <a href="blog.html" class="nav-link" style="color:var(--on-surface)">Blog</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      <a href="#" class="nav-cta">Get started</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="grid-container">
+        <div class="section-label">Blog</div>
+        <h1>What we're thinking about</h1>
+        <p class="page-tagline">Behind-the-scenes, product updates, and the occasional deep dive into building things that matter.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="grid-container">
+        <!-- Featured post -->
+        <article style="border:1px solid var(--outline); border-radius:var(--r-xl); overflow:hidden; margin-bottom:20px; display:grid; grid-template-columns:1fr 1fr; cursor:pointer; transition:transform .3s var(--ease-out-expo), box-shadow .3s;" class="blog-featured">
+          <div style="background:linear-gradient(135deg,#1a1a2e,#0f3460); height:100%; min-height:320px; display:flex; align-items:center; justify-content:center; font-size:64px;">🚀</div>
+          <div style="padding:48px;">
+            <div class="blog-card-tag">Launch</div>
+            <h2 style="font-size:var(--3xl); line-height:var(--3xl-lh); letter-spacing:var(--3xl-ls); font-weight:500; margin-bottom:14px;">Introducing Bakarkhaniii: A personal dev hub built to last</h2>
+            <p style="font-size:var(--sm); color:var(--on-surface-var); line-height:var(--sm-lh); margin-bottom:20px;">Why I built a personal hub instead of just shipping individual apps, and what I'm planning next.</p>
+            <div class="blog-card-meta">July 2, 2026 · 5 min read</div>
+          </div>
+        </article>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <div class="blog-card-img">💸</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Product</div>
+              <h3>Building Trackxpense: why expense apps get it wrong</h3>
+              <p>Most expense apps are over-engineered. Here's what I focused on instead.</p>
+              <div class="blog-card-meta">June 20, 2026 · 4 min read</div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-img">🔒</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Privacy</div>
+              <h3>Local-first is not a trend, it's the right default</h3>
+              <p>The case for building software that works entirely offline, by design.</p>
+              <div class="blog-card-meta">June 10, 2026 · 7 min read</div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-img">♥</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Story</div>
+              <h3>Why I built a couples app before a todo app</h3>
+              <p>On building something personal before building something "useful."</p>
+              <div class="blog-card-meta">May 30, 2026 · 3 min read</div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-img">🎨</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Design</div>
+              <h3>Stealing like an artist: what Antigravity taught me about UI</h3>
+              <p>How I studied Google's Antigravity site to rebuild my design system from scratch.</p>
+              <div class="blog-card-meta">May 18, 2026 · 6 min read</div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-img">🤙</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Story</div>
+              <h3>Building Yard: when your friends need a home on the internet</h3>
+              <p>The origin story of a friend-group app that started as a shared Google Doc.</p>
+              <div class="blog-card-meta">May 5, 2026 · 4 min read</div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <div class="blog-card-img">🛠️</div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Dev</div>
+              <h3>Why I ship with Cloudflare Pages and never look back</h3>
+              <p>Zero-config deploys, edge performance, and free tier that actually covers real usage.</p>
+              <div class="blog-card-meta">April 22, 2026 · 5 min read</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-new">
+    <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline"><p>Build the<br>new way.</p></div>
+        <div class="footer-columns">
+          <div class="footer-col"><div class="footer-col-title">Products</div><a href="products/trackxpense.html">Trackxpense</a><a href="products/gupto.html">Gupto</a></div>
+          <div class="footer-col"><div class="footer-col-title">Sites</div><a href="sites/attic.html">Attic</a><a href="sites/yard.html">Yard</a></div>
+          <div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About</a><a href="blog.html">Blog</a></div>
+          <div class="footer-col"><div class="footer-col-title">Legal</div><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+      </div>
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom"><span class="footer-bottom-brand">Bakarkhaniii</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">GitHub</a></div></div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <style>
+    .blog-featured:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.1); }
+    @media (max-width:767px) { .blog-featured { grid-template-columns:1fr; } .blog-featured > div:first-child { min-height:200px; } }
+  </style>
+</body>
+</html>

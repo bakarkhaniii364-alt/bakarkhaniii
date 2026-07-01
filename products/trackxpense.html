@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trackxpense — Bakarkhaniii</title>
+  <meta name="description" content="Smart expense tracking with categories, charts, and monthly summaries.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <nav class="nav-links">
+        <div class="nav-item" id="navProducts">
+          <button class="nav-btn" aria-expanded="false">Products <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><p class="dropdown-promo-label">Products</p><h3 class="dropdown-promo-title">Apps built to solve real problems.</h3><a href="index.html" class="dropdown-see-all">See all →</a></div>
+            <div class="dropdown-items">
+              <a href="trackxpense.html" class="dropdown-item"><span class="di-icon di-green"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Trackxpense</strong><small>Expense tracking, simplified</small></span></a>
+              <a href="gupto.html" class="dropdown-item"><span class="di-icon di-purple"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Gupto</strong><small>Private notes & secrets vault</small></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item" id="navSites">
+          <button class="nav-btn" aria-expanded="false">Sites <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><p class="dropdown-promo-label">Children Sites</p><h3 class="dropdown-promo-title">Spaces built for the people you love.</h3><a href="../sites/index.html" class="dropdown-see-all">Explore →</a></div>
+            <div class="dropdown-items">
+              <a href="../sites/attic.html" class="dropdown-item"><span class="di-icon di-rose"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24M13 14l1.5 1.5L17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Attic</strong><small>A private space for couples</small></span></a>
+              <a href="../sites/yard.html" class="dropdown-item"><span class="di-icon di-blue"><svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5M14 12c2 0 5 1 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Yard</strong><small>A shared space for friends</small></span></a>
+            </div>
+          </div>
+        </div>
+        <a href="../blog.html" class="nav-link">Blog</a>
+        <a href="../about.html" class="nav-link">About</a>
+      </nav>
+      <a href="#" class="nav-cta">Get started</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+    <section class="page-hero" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+      <div class="grid-container">
+        <div class="page-breadcrumb">
+          <a href="../index.html">Bakarkhaniii</a>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <a href="index.html">Products</a>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <span>Trackxpense</span>
+        </div>
+        <h1>Every rupee,<br>accounted for.</h1>
+        <p class="page-tagline">Trackxpense turns messy spending into clean charts. Log expenses, set budgets, and see exactly where your money goes — no spreadsheets needed.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">Try Trackxpense</a>
+          <a href="#features" class="btn-ghost">See features <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="grid-container">
+        <div class="section-label">Features</div>
+        <h2 class="section-heading">Built for real spending habits</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">💸</div>
+            <h3>Instant Logging</h3>
+            <p>Add expenses in seconds with smart category detection and merchant auto-fill.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">📊</div>
+            <h3>Visual Breakdowns</h3>
+            <p>Pie charts, bar charts, and weekly trends that actually make sense at a glance.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">🎯</div>
+            <h3>Budget Goals</h3>
+            <p>Set monthly limits per category and get warned before you blow past them.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">📅</div>
+            <h3>Monthly Reports</h3>
+            <p>Auto-generated summaries every month so you actually know what happened.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">🔁</div>
+            <h3>Recurring Items</h3>
+            <p>Track subscriptions and recurring bills that hit every month without thinking.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#dcfce7; color:#166534;">📤</div>
+            <h3>Export Anywhere</h3>
+            <p>Export to CSV or PDF whenever you need your data — it's always yours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="grid-container">
+        <div class="cta-block">
+          <h2 class="cta-heading">Stop guessing.<br>Start tracking.</h2>
+          <p class="cta-body">Your spending tells a story. Trackxpense helps you read it.</p>
+          <a href="#" class="btn-primary btn-inverse">Get Trackxpense</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-new">
+    <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline"><p>Build the<br>new way.</p></div>
+        <div class="footer-columns">
+          <div class="footer-col"><div class="footer-col-title">Products</div><a href="trackxpense.html">Trackxpense</a><a href="gupto.html">Gupto</a></div>
+          <div class="footer-col"><div class="footer-col-title">Sites</div><a href="../sites/attic.html">Attic</a><a href="../sites/yard.html">Yard</a></div>
+          <div class="footer-col"><div class="footer-col-title">Company</div><a href="../about.html">About</a><a href="../blog.html">Blog</a></div>
+          <div class="footer-col"><div class="footer-col-title">Legal</div><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+      </div>
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom"><span class="footer-bottom-brand">Bakarkhaniii</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">GitHub</a></div></div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>

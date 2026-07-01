@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+    ╔══════════════════════════════════════════╗
+    ║  HOW TO WRITE A BLOG POST                ║
+    ║                                          ║
+    ║  1. Copy this file                       ║
+    ║  2. Rename it: blog/your-post-name.html  ║
+    ║  3. Fill in the fields marked with ✏️    ║
+    ║  4. Add it to blog.html (see bottom)     ║
+    ╚══════════════════════════════════════════╝
+  -->
+  <title>✏️ Post Title — Bakarkhaniii Blog</title>
+  <meta name="description" content="✏️ One sentence description of the post.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+  <style>
+    .post-container { max-width: 680px; }
+    .post-header { padding: calc(var(--nav-height) + 72px) 0 48px; border-bottom: 1px solid var(--outline); margin-bottom: 60px; }
+    .post-tag { font-size: var(--xs); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .post-title { font-size: var(--5xl); line-height: var(--5xl-lh); letter-spacing: var(--5xl-ls); font-weight: 500; margin-bottom: 20px; }
+    .post-meta { font-size: var(--xs); color: var(--palette-grey-400); }
+    .post-body p { font-size: var(--base); line-height: 1.8; color: var(--on-surface-var); margin-bottom: 24px; }
+    .post-body p strong { color: var(--on-surface); font-weight: 500; }
+    .post-body h2 { font-size: var(--2xl); line-height: var(--2xl-lh); letter-spacing: var(--2xl-ls); font-weight: 500; color: var(--on-surface); margin: 48px 0 16px; }
+    .post-body h3 { font-size: var(--xl); line-height: var(--xl-lh); font-weight: 500; margin: 32px 0 12px; }
+    .post-body ul, .post-body ol { padding-left: 24px; margin-bottom: 24px; }
+    .post-body ul { list-style: disc; }
+    .post-body ol { list-style: decimal; }
+    .post-body li { font-size: var(--base); line-height: 1.8; color: var(--on-surface-var); margin-bottom: 8px; }
+    .post-body pre { background: var(--palette-grey-1100); color: var(--palette-grey-50); padding: 24px; border-radius: var(--r-md); font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.7; overflow-x: auto; margin-bottom: 24px; }
+    .post-body blockquote { border-left: 3px solid var(--palette-grey-200); padding-left: 20px; margin: 32px 0; }
+    .post-body blockquote p { color: var(--on-surface-var); font-style: italic; }
+    .post-body img { border-radius: var(--r-md); margin: 32px 0; width: 100%; }
+    .post-divider { height: 1px; background: var(--outline); margin: 60px 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: var(--sm); color: var(--on-surface-var); transition: color .15s; }
+    .back-link:hover { color: var(--on-surface); }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV (don't touch) ──────────────────────────────── -->
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <nav class="nav-links">
+        <div class="nav-item" id="navProducts">
+          <button class="nav-btn" aria-expanded="false">Products <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><h3 class="dropdown-promo-title">Explore our next generation products</h3><a href="../products/index.html" class="dropdown-see-all">See overview</a></div>
+            <div class="dropdown-section"><p class="dropdown-section-label">Products</p><div class="dropdown-items"><a href="../products/trackxpense.html" class="dropdown-item"><span class="di-icon di-green"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="di-name">Trackxpense</span></a><a href="../products/gupto.html" class="dropdown-item"><span class="di-icon di-purple"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="di-name">Gupto</span></a></div></div>
+          </div>
+        </div>
+        <div class="nav-item" id="navSites">
+          <button class="nav-btn" aria-expanded="false">Sites <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="dropdown">
+            <div class="dropdown-promo"><h3 class="dropdown-promo-title">Spaces built for the people you love.</h3><a href="../sites/index.html" class="dropdown-see-all">Explore all sites</a></div>
+            <div class="dropdown-section"><p class="dropdown-section-label">Sites</p><div class="dropdown-items"><a href="../sites/attic.html" class="dropdown-item"><span class="di-icon di-rose"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24M13 14l1.5 1.5L17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="di-name">Attic</span></a><a href="../sites/yard.html" class="dropdown-item"><span class="di-icon di-blue"><svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5M14 12c2 0 5 1 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="di-name">Yard</span></a></div></div>
+          </div>
+        </div>
+        <a href="../blog.html" class="nav-link" style="color:var(--on-surface)">Blog</a>
+        <a href="../about.html" class="nav-link">About</a>
+      </nav>
+      <a href="#" class="nav-cta">Get started</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <!-- ── END NAV ─────────────────────────────────────────── -->
+
+  <main>
+    <div class="grid-container">
+      <div class="post-container">
+
+        <!-- ── POST HEADER ── -->
+        <header class="post-header">
+          <div class="post-tag">✏️ Category (e.g. Product / Story / Dev / Design)</div>
+          <h1 class="post-title">✏️ Your Blog Post Title Goes Here</h1>
+          <p class="post-meta">✏️ Month Day, Year · ✏️ X min read</p>
+        </header>
+
+        <!-- ── POST BODY — write your content below ── -->
+        <article class="post-body">
+
+          <p>
+            ✏️ Write your intro paragraph here. Tell the reader what this post is about and why it matters. Keep it punchy — 2-3 sentences max.
+          </p>
+
+          <h2>✏️ First Section Heading</h2>
+
+          <p>
+            ✏️ Write your first section here. You can use <strong>bold</strong> for emphasis.
+          </p>
+
+          <p>
+            ✏️ Continue with more paragraphs. Use h2 tags for major sections, h3 for sub-sections.
+          </p>
+
+          <!-- Example: bullet list -->
+          <ul>
+            <li>✏️ List item one</li>
+            <li>✏️ List item two</li>
+            <li>✏️ List item three</li>
+          </ul>
+
+          <h2>✏️ Second Section Heading</h2>
+
+          <p>✏️ More content here.</p>
+
+          <!-- Example: code block -->
+          <pre>✏️ // paste code here
+const example = 'hello world';
+console.log(example);</pre>
+
+          <!-- Example: blockquote -->
+          <blockquote>
+            <p>✏️ "A memorable quote or important callout goes here."</p>
+          </blockquote>
+
+          <h2>✏️ Conclusion</h2>
+
+          <p>✏️ Wrap up the post. What should the reader take away? What's next?</p>
+
+        </article>
+
+        <div class="post-divider"></div>
+        <a href="../blog.html" class="back-link">← Back to Blog</a>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER (don't touch) -->
+  <footer class="footer-new" style="margin-top:80px;">
+    <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline"><p>Build the<br>new way.</p></div>
+        <div class="footer-columns">
+          <div class="footer-col"><div class="footer-col-title">Products</div><a href="../products/trackxpense.html">Trackxpense</a><a href="../products/gupto.html">Gupto</a></div>
+          <div class="footer-col"><div class="footer-col-title">Sites</div><a href="../sites/attic.html">Attic</a><a href="../sites/yard.html">Yard</a></div>
+          <div class="footer-col"><div class="footer-col-title">Company</div><a href="../about.html">About</a><a href="../blog.html">Blog</a></div>
+          <div class="footer-col"><div class="footer-col-title">Legal</div><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+      </div>
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom"><span class="footer-bottom-brand">Bakarkhaniii</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>
+
+<!--
+════════════════════════════════════════════════════════════
+  HOW TO ADD YOUR POST TO blog.html
+════════════════════════════════════════════════════════════
+
+After you write and save your post, add a card to blog.html.
+Copy and paste this block into the .blog-grid div:
+
+  <article class="blog-card">
+    <div class="blog-card-img">✏️ emoji</div>
+    <div class="blog-card-body">
+      <div class="blog-card-tag">✏️ Category</div>
+      <h3>✏️ Post Title</h3>
+      <p>✏️ One-sentence description</p>
+      <div class="blog-card-meta">✏️ Month Day, Year · ✏️ X min read</div>
+    </div>
+  </article>
+
+Then make the <article> tag a link:
+  <a href="blog/your-post-name.html" class="blog-card" style="display:block;">
+    ...
+  </a>
+
+════════════════════════════════════════════════════════════
+-->
