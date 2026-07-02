@@ -1014,6 +1014,16 @@ a:hover .arrow { transform: translateX(4px); }
   font-size: 20px;
 }
 
+.feature-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .feature-item h3 {
   font-size: var(--lg);
   line-height: var(--lg-lh);
@@ -1055,6 +1065,15 @@ a:hover .arrow { transform: translateX(4px); }
   justify-content: center;
   font-size: 48px;
   border-bottom: 1px solid var(--outline);
+}
+
+.blog-card-img svg {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .blog-card-body { padding: 24px; }

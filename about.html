@@ -15,7 +15,8 @@
     .about-body p strong { color: var(--on-surface); font-weight: 500; }
     .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 60px; }
     .value-card { border: 1px solid var(--outline); border-radius: var(--r-lg); padding: 32px; }
-    .value-card h3 { font-size: var(--xl); font-weight: 500; margin-bottom: 10px; }
+    .value-card h3 { font-size: var(--xl); font-weight: 500; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .value-card h3 .value-icon { color: var(--accent); width: 22px; height: 22px; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
     .value-card p { font-size: var(--sm); color: var(--on-surface-var); line-height: var(--sm-lh); }
     .divider { height: 1px; background: var(--outline); margin: 80px 0; }
     @media (max-width:767px) { .values-grid { grid-template-columns: 1fr; } }
@@ -194,19 +195,19 @@
         <h2 class="section-heading">How everything here gets built</h2>
         <div class="values-grid">
           <div class="value-card">
-            <h3>🎯 Focused</h3>
+            <h3><svg class="value-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Focused</h3>
             <p>Every product does one thing well. No bloat, no feature creep, no dark patterns. If a feature doesn't serve the core use case, it doesn't ship.</p>
           </div>
           <div class="value-card">
-            <h3>🔒 Private by default</h3>
+            <h3><svg class="value-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Private by default</h3>
             <p>Your data is yours. We collect as little as possible, store nothing we don't need, and always give you a way out.</p>
           </div>
           <div class="value-card">
-            <h3>⚡ Fast, always</h3>
+            <h3><svg class="value-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Fast, always</h3>
             <p>Performance is a feature. Every page loads fast. Every app responds instantly. Slow software is disrespectful of people's time.</p>
           </div>
           <div class="value-card">
-            <h3>🛠️ Built to last</h3>
+            <h3><svg class="value-icon" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Built to last</h3>
             <p>Nothing here is a prototype left to die. Every project is maintained, improved, and treated like a real product — because it is.</p>
           </div>
         </div>
