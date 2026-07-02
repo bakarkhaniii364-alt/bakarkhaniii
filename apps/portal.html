@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Portal Game — Bakarkhaniii</title>
+  <meta name="description" content="A 3D portal-puzzle game running natively in your browser.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="3;url=../play/portal/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-cta">GitHub →</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+    <section class="page-hero" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+      <div class="grid-container">
+        <div class="page-breadcrumb">
+          <a href="../index.html">Bakarkhaniii</a>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <span>Games</span>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <span>Portal Game</span>
+        </div>
+        <h1 style="color: white;">Puzzles in<br>three dimensions.</h1>
+        <p class="page-tagline" style="color: #94a3b8;">A complete 3D portal game running natively in your browser. Launch portals, solve spatial puzzles, and carry the companion cube.</p>
+        <p style="margin-top: 20px; font-size: 14px; color: #38bdf8;">Redirecting to the game in 3 seconds...</p>
+        <div class="hero-actions" style="margin-top: 24px;">
+          <a href="../play/portal/" class="btn-primary" style="background: #38bdf8; color: #0f172a;">Play Game Now</a>
+          <a href="https://github.com/bakarkhaniii364-alt/portal" target="_blank" class="btn-ghost" style="border-color: #334155; color: #94a3b8;">View Source <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="grid-container">
+        <div class="section-label">Engine Details</div>
+        <h2 class="section-heading">Built on modern WebGL</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;">🌀</div>
+            <h3>Portal Physics</h3>
+            <p>Accurate spatial translation and momentum conserving calculations through physical portals.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;">✨</div>
+            <h3>SSAO & SSR</h3>
+            <p>Advanced rendering effects: Screen Space Ambient Occlusion and Screen Space Reflections inside the WebGL canvas.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;">🔊</div>
+            <h3>Spatial Audio</h3>
+            <p>Custom audio feedback and ambient SFX depending on positioning and portal events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-new">
+    <div class="grid-container">
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-brand">Bakarkhaniii</span>
+        <div class="footer-bottom-links">
+          <a href="../index.html">Home</a>
+          <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>

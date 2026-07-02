@@ -1,0 +1,22 @@
+{
+  "disabledTools": [
+    "bigquery-data-transfer-service",
+    "building-data-apps",
+    "data-autocleaning",
+    "dataform-bigquery",
+    "dbt-bigquery",
+    "developing-with-bigquery",
+    "discovering-gcp-data-assets",
+    "federate-lakehouse-catalog",
+    "gcloud-auth-verification",
+    "gcp-composer-troubleshooting",
+    "gcp-data-pipelines",
+    "gcp-dataflow",
+    "gcp-pipeline-orchestration",
+    "gcp-pipeline-resource-provisioning",
+    "gcp-spark",
+    "managing-python-dependencies",
+    "ml-best-practices",
+    "notebook-guidance"
+  ]
+}

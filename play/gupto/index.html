@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>gupto</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Vector Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts Preconnect and Space Mono Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Main Style sheet -->
+    <link rel="stylesheet" href="index.css">
+    
+    <script>
+        // Always force the matcha theme
+        document.documentElement.setAttribute('data-theme', 'matcha');
+    </script>
+</head>
+<body class="flex flex-col min-h-screen justify-between relative overflow-x-hidden">
+    
+    <!-- background pattern layer -->
+    <div class="bg-pattern-grid"></div>
+
+    <!-- Top Solid Bar -->
+    <header id="game-header" class="w-full bg-[var(--bg-header)] border-b-2 border-[var(--border)] px-4 py-2.5 flex justify-between items-center text-[var(--text-on-header)] font-bold font-mono relative z-20 shrink-0 select-none hidden">
+        <div class="flex items-center gap-2">
+            <span class="text-base lowercase tracking-wide font-black ml-1">gupto</span>
+            <span id="header-phase-badge" class="ml-2 text-[length:var(--font-size-micro)] uppercase font-bold bg-[var(--accent)] text-[var(--text-on-accent)] border border-[var(--border)] px-1.5 py-0.5 shadow-[1px_1px_0px_var(--border)] select-none">running</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <!-- Game End Button -->
+            <button onclick="openEndGameConfirm()" class="h-11 px-3 bg-[var(--color-danger)] text-[var(--text-on-danger)] border-2 border-[var(--border)] flex items-center justify-center font-bold text-xs shadow-[1.5px_1.5px_0px_0px_var(--border)] active:translate-y-0.5 shrink-0 cursor-pointer gap-1.5 select-none" title="end game">
+                <i data-lucide="power" class="w-4 h-4"></i>
+                <span>end game</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main View Content Area -->
+    <main class="flex-grow flex flex-col justify-center items-center px-4 py-6 relative z-10 w-full">
+        <div class="w-full max-w-xl mx-auto flex flex-col justify-between">
+            <div id="game-container" class="w-full flex-grow flex flex-col justify-between">
+                <!-- Programmatic views inject here as the main retro window -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Retro Settings Modal (Attic/Yard Style) -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <!-- Retro Window Box -->
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-sm w-full max-h-[90vh] pop-in">
+            
+            <!-- Modal Header -->
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0 relative overflow-hidden" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <!-- 3-line handle decoration -->
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <h2 class="font-mono font-bold lowercase text-sm tracking-tight flex items-center gap-2 flex-shrink-0 select-none">settings_config.sys</h2>
+                    <div class="flex-1 h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <div class="relative z-10 flex items-center">
+                    <button onclick="closeModal('settings-modal')" aria-label="Close" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[2px_2px_0px_0px_var(--border)] hover:brightness-110 transition-all active:translate-y-[1px] active:shadow-none bg-[var(--primary)] text-[var(--text-on-primary)]" style="color: var(--text-on-primary); background-color: var(--primary);">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="p-5 overflow-y-auto text-[var(--text-main)] bg-[var(--bg-window)] text-sm leading-[1.5] lowercase font-normal select-none">
+                <div class="space-y-5">
+                    <!-- Sound settings -->
+                    <div class="border-b border-dashed border-[var(--border)]/20 pb-4">
+                        <h3 class="font-bold text-sm text-[var(--primary)] uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="volume-2" class="w-4 h-4"></i> audio settings</h3>
+                        <label class="flex items-center gap-2.5 cursor-pointer select-none font-bold lowercase min-h-[44px]">
+                            <input type="checkbox" id="sound-checkbox" onchange="toggleAudioSetting(this.checked)" class="w-5 h-5 accent-[var(--primary)] border-2 border-[var(--border)] cursor-pointer">
+                            <span>sound effects enabled</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Dudhbhat settings -->
+                    <div>
+                        <h3 class="font-bold text-sm text-[var(--secondary)] uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="ghost" class="w-4 h-4"></i> dudhbhat mode</h3>
+                        <label class="flex items-center gap-2.5 cursor-pointer select-none font-bold lowercase min-h-[44px]">
+                            <input type="checkbox" id="dudhbhat-checkbox" onchange="toggleDudhbhatSetting(this.checked)" class="w-5 h-5 accent-[var(--secondary)] border-2 border-[var(--border)] cursor-pointer">
+                            <span>dudhbhat role active</span>
+                        </label>
+                        <div class="mt-2.5 text-[length:var(--font-size-caption)] text-[var(--text-muted)] leading-[1.4] normal-case bg-[var(--bg-main)] border border-[var(--border)] p-2.5">
+                            <p class="font-bold uppercase tracking-wider text-[var(--text-main)] mb-1 text-[length:var(--font-size-micro)]">dudhbhat rules:</p>
+                            when active with <strong>5+ players</strong>, one player is designated the <strong>dudhbhat</strong> (dummy). they get no secret word, but must listen to clues, pretend (larp) to have the word, and blend in. if exiled, they get a final chance to guess the civilian word for a side victory!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retro Help Modal (Attic/Yard Style) -->
+    <div id="rules-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <!-- Retro Window Box -->
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-md w-full max-h-[90vh] pop-in">
+            
+            <!-- Modal Header -->
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0 relative overflow-hidden" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <!-- 3-line handle decoration -->
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <h2 class="font-mono font-bold lowercase text-sm tracking-tight flex items-center gap-2 flex-shrink-0 select-none">gupto_help.txt</h2>
+                    <div class="flex-1 h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <div class="relative z-10 flex items-center">
+                    <button onclick="closeModal('rules-modal')" aria-label="Close" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[2px_2px_0px_0px_var(--border)] hover:brightness-110 transition-all active:translate-y-[1px] active:shadow-none bg-[var(--primary)] text-[var(--text-on-primary)]" style="color: var(--text-on-primary); background-color: var(--primary);">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="p-5 overflow-y-auto text-[var(--text-main)] bg-[var(--bg-window)] text-sm leading-[1.5] lowercase font-normal select-none">
+                <div class="space-y-4">
+                    <div class="border-b-2 border-dashed border-[var(--border)]/20 pb-3">
+                        <h3 class="font-bold text-base text-[var(--primary)] uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="book-open" class="w-4 h-4"></i> how to play</h3>
+                        <div class="space-y-3">
+                            <p><strong>1. memorize word:</strong> everyone gets a secret word. civilians get the same word, but guptos get a slightly different but related word.</p>
+                            <p><strong>2. describe clues:</strong> players go around giving a single word or short clue. guptos must blend in by guessing the civilian word, while civilians must detect the impostor without giving their word away.</p>
+                            <p><strong>3. discuss & vote:</strong> discuss who seems out of place, point fingers physically, and exile the suspect!</p>
+                            <p><strong>4. win & loss:</strong> civilians win if all guptos are exiled. guptos win if they match or outnumber civilians.</p>
+                        </div>
+                    </div>
+                    <div>
+                         <h3 class="font-bold text-base text-[var(--secondary)] uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="lightbulb" class="w-4 h-4"></i> strategy tips</h3>
+                         <ul class="list-disc list-inside space-y-1.5 font-normal">
+                             <li><strong>civilians:</strong> don't be too obvious! if the gupto deduces your word, they will copy your clues.</li>
+                             <li><strong>guptos:</strong> listen carefully. adapt descriptions to match what others are describing.</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules & Settings Selector Modal -->
+    <div id="rules-settings-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-xs w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight flex items-center gap-2 flex-shrink-0 select-none">hub_menu.sys</span>
+                    <div class="flex-1 h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <button onclick="closeModal('rules-settings-modal')" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[2px_2px_0px_0px_var(--border)] bg-[var(--primary)] text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-5 flex flex-col gap-3 select-none">
+                <button onclick="closeModal('rules-settings-modal'); openModal('rules-modal');" class="w-full h-12 font-bold squish-btn bg-[var(--accent)] text-[var(--text-on-accent)] flex items-center justify-center gap-2">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>read rules</span>
+                </button>
+                <button onclick="closeModal('rules-settings-modal'); openModal('settings-modal');" class="w-full h-12 font-bold squish-btn bg-[var(--secondary)] text-white flex items-center justify-center gap-2">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                    <span>game settings</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup Game Modal -->
+    <div id="setup-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-sm w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight flex items-center gap-2 flex-shrink-0 select-none">setup_config.sys</span>
+                    <div class="flex-1 h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <button onclick="closeModal('setup-modal')" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[2px_2px_0px_0px_var(--border)] bg-[var(--primary)] text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-5 space-y-5 text-[var(--text-main)] select-none">
+                <!-- Players count -->
+                <div class="flex justify-between items-center bg-[var(--bg-window)] border-2 border-[var(--border)] p-3 shadow-[2.5px_2.5px_0px_var(--border)]">
+                    <span class="font-bold text-sm lowercase">total players</span>
+                    <div class="flex items-center gap-3">
+                        <button onclick="adjustSetupPlayers(-1)" class="w-11 h-11 text-lg font-bold squish-btn bg-[var(--bg-window)] text-[var(--text-main)] flex items-center justify-center">-</button>
+                        <span id="setup-player-count" class="w-8 text-center font-bold text-lg">4</span>
+                        <button onclick="adjustSetupPlayers(1)" class="w-11 h-11 text-lg font-bold squish-btn bg-[var(--accent)] text-[var(--text-on-accent)] flex items-center justify-center">+</button>
+                    </div>
+                </div>
+                
+                <!-- Gupto count -->
+                <div id="setup-gupto-box" class="flex justify-between items-center bg-[var(--bg-window)] border-2 border-[var(--border)] p-3 shadow-[2.5px_2.5px_0px_var(--border)] transition-all duration-200">
+                    <span id="setup-gupto-label" class="font-bold text-sm lowercase">gupto count</span>
+                    <div class="flex items-center gap-3">
+                        <button id="btn-gupto-dec" onclick="adjustSetupGuptos(-1)" class="w-11 h-11 text-lg font-bold squish-btn bg-[var(--bg-window)] text-[var(--text-main)] flex items-center justify-center">-</button>
+                        <span id="setup-gupto-count" class="w-8 text-center font-bold text-lg">1</span>
+                        <button id="btn-gupto-inc" onclick="adjustSetupGuptos(1)" class="w-11 h-11 text-lg font-bold squish-btn bg-[var(--primary)] text-[var(--text-on-primary)] flex items-center justify-center">+</button>
+                    </div>
+                </div>
+                
+                <!-- Deal Cards Button -->
+                <button onclick="dealCardsFromSetup()" class="w-full h-12 font-bold squish-btn bg-[var(--primary)] text-[var(--text-on-primary)] flex items-center justify-center gap-2 mt-2">
+                    <i data-lucide="play" class="w-5 h-5"></i>
+                    <span>deal cards</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name Entry Modal (Draft Phase) -->
+    <div id="name-entry-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-sm w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight select-none" id="name-entry-header">player_setup.sys</span>
+                    <div class="flex-grow h-px bg-current opacity-30 ml-2"></div>
+                </div>
+            </div>
+            <div class="p-5 space-y-4">
+                <div class="text-center select-none">
+                    <h3 class="text-lg font-bold text-[var(--primary)] lowercase" id="name-entry-title">player one name</h3>
+                    <p class="text-xs text-[var(--text-muted)] lowercase mt-1">enter your name and select an avatar color</p>
+                </div>
+                <div class="flex items-center gap-4 bg-[var(--bg-window)] border-2 border-[var(--border)] p-3.5 shadow-[2.5px_2.5px_0px_var(--border)]">
+                    <div class="flex items-center gap-2 select-none">
+                        <div id="name-entry-avatar" class="w-11 h-11 border-2 border-[var(--border)] flex items-center justify-center text-lg font-bold font-mono tracking-tighter shrink-0 uppercase bg-[var(--primary)] text-white">??</div>
+                        <button onclick="cycleDraftColor()" class="w-11 h-11 border-2 border-[var(--border)] bg-[var(--bg-window)] flex items-center justify-center shadow-[1px_1px_0px_var(--border)] active:translate-y-0.5 active:shadow-none" title="cycle color">
+                            <i data-lucide="palette" class="w-5 h-5 text-[var(--text-main)]"></i>
+                        </button>
+                    </div>
+                    <div class="flex-grow">
+                        <input type="text" id="draft-name-input" autocorrect="off" autocapitalize="none" spellcheck="false" class="w-full bg-[var(--bg-window)] border-2 border-[var(--border)] px-3 py-2 text-sm text-[var(--text-main)] font-normal outline-none font-mono lowercase" placeholder="username...">
+                    </div>
+                </div>
+                <button onclick="submitDraftName()" class="w-full h-12 font-bold squish-btn bg-[var(--primary)] text-[var(--text-on-primary)] flex items-center justify-center gap-2 select-none">
+                    <span>confirm name</span>
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret Word Reveal Modal -->
+    <div id="reveal-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-xs w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight select-none">secret_reveal.sys</span>
+                    <div class="flex-grow h-px bg-current opacity-30 ml-2"></div>
+                </div>
+            </div>
+            <div class="p-6 text-center space-y-4 select-none">
+                <span class="text-[length:var(--font-size-caption)] font-bold uppercase tracking-wider bg-[var(--accent)] text-[var(--text-on-accent)] border-2 border-[var(--border)] px-3 py-0.5 shadow-[1.5px_1.5px_0px_var(--border)] inline-block">do not show others</span>
+                <h3 class="text-xl font-black text-[var(--primary)] lowercase" id="reveal-player-greeting">hey, player!</h3>
+                <div class="game-card p-4 bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[3px_3px_0px_var(--border)]">
+                    <div class="text-xl text-[var(--primary)] font-black tracking-wide font-mono lowercase select-text" id="reveal-secret-word">secret word</div>
+                    <p class="text-[length:var(--font-size-caption)] text-[var(--text-muted)] lowercase mt-2" id="reveal-instructions">memorize it! click below to lock & hide.</p>
+                </div>
+                <button onclick="confirmCardReveal()" class="w-full h-12 font-bold squish-btn bg-[var(--primary)] text-[var(--text-on-primary)] flex items-center justify-center gap-2">
+                    <i data-lucide="lock" class="w-4 h-4"></i>
+                    <span>i've memorized it</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Game Confirmation Modal -->
+    <div id="confirm-end-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-xs w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0 bg-red-700 text-white" style="background-color: var(--color-danger); color: var(--text-on-danger);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight select-none">confirm_end.sys</span>
+                    <div class="flex-grow h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <button onclick="closeModal('confirm-end-modal')" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[1px_1px_0px_var(--border)] bg-transparent text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-5 text-center space-y-4 select-none">
+                <p class="text-base font-bold text-[var(--text-main)] lowercase">are you sure you want to end the game? current progress will be lost.</p>
+                <div class="flex gap-3">
+                    <button onclick="closeModal('confirm-end-modal')" class="flex-1 h-12 font-bold squish-btn bg-[var(--bg-window)] text-[var(--text-main)]">cancel</button>
+                    <button onclick="confirmEndGame()" class="flex-1 h-12 font-bold squish-btn bg-[var(--color-danger)] text-[var(--text-on-danger)]">yes, end game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exile Confirmation Modal -->
+    <div id="confirm-exile-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden animate-in fade-in duration-200">
+        <div class="glass-window bg-[var(--bg-window)] border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_var(--border)] flex flex-col max-w-xs w-full pop-in">
+            <div class="window-header border-b-2 border-[var(--border)] flex justify-between items-center p-1.5 flex-shrink-0" style="background-color: var(--bg-header); color: var(--text-on-header);">
+                <div class="relative z-10 flex gap-2 items-center flex-1">
+                    <div class="flex flex-col gap-[3px] w-5 flex-shrink-0">
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                        <div class="h-[2px] w-full bg-current opacity-50"></div>
+                    </div>
+                    <span class="font-mono font-bold lowercase text-sm tracking-tight select-none">confirm_exile.sys</span>
+                    <div class="flex-grow h-px bg-current opacity-30 ml-2"></div>
+                </div>
+                <button onclick="closeModal('confirm-exile-modal')" class="flex p-2 items-center justify-center min-w-[44px] min-h-[44px] border-2 border-[var(--border)] shadow-[2px_2px_0px_0px_var(--border)] bg-[var(--primary)] text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-5 text-center space-y-4 select-none">
+                <p class="text-base font-bold text-[var(--text-main)] lowercase" id="confirm-exile-text">are you sure you want to exile this player?</p>
+                <div class="flex gap-3">
+                    <button onclick="closeModal('confirm-exile-modal')" class="flex-1 h-12 font-bold squish-btn bg-[var(--bg-window)] text-[var(--text-main)]">cancel</button>
+                    <button id="confirm-exile-btn" onclick="confirmExileAction()" class="flex-1 h-12 font-bold squish-btn bg-[var(--color-danger)] text-[var(--text-on-danger)]">yes, exile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none w-80 max-w-[calc(100vw-2rem)]"></div>
+
+    <!-- Core Game Scripts -->
+    <script src="game.js"></script>
+</body>
+</html>

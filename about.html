@@ -29,31 +29,148 @@
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
         <span>Bakarkhaniii</span>
       </a>
-      <nav class="nav-links">
-        <div class="nav-item" id="navProducts">
-          <button class="nav-btn" aria-expanded="false">Products <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-          <div class="dropdown">
-            <div class="dropdown-promo"><p class="dropdown-promo-label">Products</p><h3 class="dropdown-promo-title">Apps built to solve real problems.</h3><a href="products/index.html" class="dropdown-see-all">See all →</a></div>
-            <div class="dropdown-items">
-              <a href="products/trackxpense.html" class="dropdown-item"><span class="di-icon di-green"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Trackxpense</strong><small>Expense tracking, simplified</small></span></a>
-              <a href="products/gupto.html" class="dropdown-item"><span class="di-icon di-purple"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Gupto</strong><small>Private notes & secrets vault</small></span></a>
+      <nav class="nav-links" id="navLinks">
+
+        <!-- Apps dropdown -->
+        <div class="nav-item" id="navApps">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Apps <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Native apps for desktop & mobile</h3>
+              <a href="index.html#apps" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Apps</p>
+              <div class="dropdown-items">
+                <a href="apps/trackxpense.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-green">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Trackxpense (APK)</span>
+                </a>
+                <a href="apps/browser.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-blue">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v16M2 10h16" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Shampan Browser (EXE)</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="nav-item" id="navSites">
-          <button class="nav-btn" aria-expanded="false">Sites <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-          <div class="dropdown">
-            <div class="dropdown-promo"><p class="dropdown-promo-label">Children Sites</p><h3 class="dropdown-promo-title">Spaces built for the people you love.</h3><a href="sites/index.html" class="dropdown-see-all">Explore →</a></div>
-            <div class="dropdown-items">
-              <a href="sites/attic.html" class="dropdown-item"><span class="di-icon di-rose"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24M13 14l1.5 1.5L17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Attic</strong><small>A private space for couples</small></span></a>
-              <a href="sites/yard.html" class="dropdown-item"><span class="di-icon di-blue"><svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5M14 12c2 0 5 1 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span><strong>Yard</strong><small>A shared space for friends</small></span></a>
+
+        <!-- Extensions dropdown -->
+        <div class="nav-item" id="navExtensions">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Extensions <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Browser & app add-ons</h3>
+              <a href="index.html#extensions" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Extensions</p>
+              <div class="dropdown-items">
+                <a href="apps/aegis.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h14M8 3v14" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">AEGIS</span>
+                </a>
+                <a href="apps/unfollow-ext.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-orange">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 17a7 7 0 0114 0" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Unfollow Ext</span>
+                </a>
+                <a href="apps/photoshop-addon.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-amber">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Photoshop Addon</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Games dropdown -->
+        <div class="nav-item" id="navGames">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Games <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">HTML & WebGL browser games</h3>
+              <a href="index.html#games" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Games</p>
+              <div class="dropdown-items">
+                <a href="apps/gupto.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Gupto</span>
+                </a>
+                <a href="apps/portal.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-cyan">
+                    <svg viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="10" rx="4" ry="8" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Portal Game</span>
+                </a>
+                <a href="apps/voxel.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-green">
+                    <svg viewBox="0 0 20 20" fill="none"><rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Voxel World</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Webapps dropdown -->
+        <div class="nav-item" id="navWebapps">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Webapps <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Hosted web solutions & projects</h3>
+              <a href="index.html#webapps" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Webapps</p>
+              <div class="dropdown-items">
+                <a href="https://github.com/bakarkhaniii364-alt/attic" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-rose">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Attic</span>
+                </a>
+                <a href="https://github.com/bakarkhaniii364-alt/yard" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-blue">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Yard</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <a href="blog.html" class="nav-link">Blog</a>
         <a href="about.html" class="nav-link" style="color:var(--on-surface)">About</a>
       </nav>
-      <a href="#" class="nav-cta">Get started</a>
+
+      <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-github" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
+      <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-cta">GitHub →</a>
     </div>
   </header>
   <div class="nav-backdrop" id="navBackdrop"></div>
@@ -69,10 +186,10 @@
     <section class="section" style="padding-top:0;">
       <div class="grid-container">
         <div class="about-body">
-          <p><strong>Bakarkhaniii is a personal dev hub.</strong> A collection of webapps, products, and experiments built by one person who cares about quality, speed, and doing things properly.</p>
+          <p><strong>Bakarkhaniii is a personal dev hub.</strong> A collection of native apps, browser extensions, browser games, and webapps built by one person who cares about quality, speed, and doing things properly.</p>
           <p>The name sounds like a lot. That's intentional. There's a lot here — and more coming. Every project under this roof is built to the same standard: clean design, focused features, and software that respects the person using it.</p>
-          <p>The products tackle real friction. <strong>Trackxpense</strong> came from being annoyed at spreadsheets every month. <strong>Gupto</strong> came from not trusting any app with sensitive notes. Both came from building something I actually needed.</p>
-          <p>The sites — <strong>Attic</strong> and <strong>Yard</strong> — came from the same frustration. Your couple deserves better than a shared notes app. Your friends deserve better than a group chat.</p>
+          <p>The products tackle real friction. <strong>Trackxpense</strong> came from being annoyed at spreadsheets every month. <strong>Gupto</strong> came from building a fun, engaging word deduction game to play with friends. Both came from building things I actually wanted to use.</p>
+          <p>The extensions — <strong>AEGIS</strong> and <strong>Unfollow Ext</strong> — came from similar utility. Speeding up search actions and managing Instagram followers directly and safely within the browser.</p>
           <p><strong>This is a long-term project.</strong> Every piece gets refined, not abandoned. If you find a bug, want a feature, or just want to talk — reach out.</p>
         </div>
 
@@ -118,16 +235,43 @@
   <footer class="footer-new">
     <div class="grid-container">
       <div class="footer-top">
-        <div class="footer-tagline"><p>Build the<br>new way.</p></div>
+        <div class="footer-tagline">
+          <p>Build the<br>new way.</p>
+        </div>
         <div class="footer-columns">
-          <div class="footer-col"><div class="footer-col-title">Products</div><a href="products/trackxpense.html">Trackxpense</a><a href="products/gupto.html">Gupto</a></div>
-          <div class="footer-col"><div class="footer-col-title">Sites</div><a href="sites/attic.html">Attic</a><a href="sites/yard.html">Yard</a></div>
-          <div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About</a><a href="blog.html">Blog</a></div>
-          <div class="footer-col"><div class="footer-col-title">Legal</div><a href="#">Privacy</a><a href="#">Terms</a></div>
+          <div class="footer-col">
+            <div class="footer-col-title">Apps</div>
+            <a href="apps/trackxpense.html">Trackxpense</a>
+            <a href="apps/browser.html">Shampan Browser</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Extensions</div>
+            <a href="apps/unfollow-ext.html">Unfollow Ext</a>
+            <a href="apps/aegis.html">AEGIS</a>
+            <a href="apps/photoshop-addon.html">Photoshop Addon</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Games</div>
+            <a href="apps/gupto.html">Gupto</a>
+            <a href="apps/portal.html">Portal Game</a>
+            <a href="apps/voxel.html">Voxel World</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="https://github.com/bakarkhaniii364-alt/attic" target="_blank">Attic</a>
+            <a href="https://github.com/bakarkhaniii364-alt/yard" target="_blank">Yard</a>
+            <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank">Droste Morph</a>
+            <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank">Word Cloud</a>
+          </div>
         </div>
       </div>
       <div class="footer-wordmark">Bakarkhaniii</div>
-      <div class="footer-bottom"><span class="footer-bottom-brand">Bakarkhaniii</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">GitHub</a></div></div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-brand">Bakarkhaniii</span>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+        </div>
+      </div>
     </div>
   </footer>
 

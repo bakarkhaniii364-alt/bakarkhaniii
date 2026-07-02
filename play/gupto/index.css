@@ -1,0 +1,89 @@
+@import './styles/themes.css';
+@import './styles/animations.css';
+@import './styles/global.css';
+@import './styles/components.css';
+@import './styles/mobile.css';
+
+/* Strict Retro compliance overrides */
+* {
+    border-radius: 0px !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    font-family: 'Space Mono', Consolas, Monaco, monospace !important;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.bg-pattern-grid {
+    background-image: 
+        linear-gradient(var(--bg-pattern) 1.5px, transparent 1.5px), 
+        linear-gradient(90deg, var(--bg-pattern) 1.5px, transparent 1.5px);
+    background-size: 45px 45px;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.22;
+}
+
+.game-card {
+    background-color: var(--bg-window);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0px 0px var(--border);
+    color: var(--text-main);
+}
+
+.squish-btn {
+    border: 2px solid var(--border);
+    box-shadow: 2px 2px 0px 0px var(--border);
+}
+.squish-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px 0px var(--border);
+}
+
+/* Drafting phase card styles */
+.card-face-down {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--bg-window),
+        var(--bg-window) 6px,
+        var(--bg-pattern) 6px,
+        var(--bg-pattern) 12px
+    );
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+.card-face-down:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px 0px var(--border);
+}
+
+.card-drafted {
+    background-color: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
+    border-style: dashed !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none !important;
+}
+
+/* Toast animations */
+@keyframes toast-slide-in {
+    from {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.toast-animate-in {
+    animation: toast-slide-in 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+

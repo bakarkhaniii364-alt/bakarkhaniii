@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Voxel World — Bakarkhaniii</title>
+  <meta name="description" content="A 3D multiplayer voxel game running natively in your browser.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="3;url=../play/voxel/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="13" fill="#121317"/><path d="M7 13L13 7L19 13L13 19L7 13Z" fill="white"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-cta">GitHub →</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main>
+    <section class="page-hero" style="background: linear-gradient(135deg, #14532d 0%, #166534 100%); color: white;">
+      <div class="grid-container">
+        <div class="page-breadcrumb">
+          <a href="../index.html">Bakarkhaniii</a>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <span>Games</span>
+          <span style="color:var(--palette-grey-300)">›</span>
+          <span>Voxel World</span>
+        </div>
+        <h1 style="color: white;">Build, explore,<br>and survive.</h1>
+        <p class="page-tagline" style="color: #86efac;">A WebGL multiplayer voxel game built on React Three Fiber. Mine blocks, build structures, and interact with other players in real-time.</p>
+        <p style="margin-top: 20px; font-size: 14px; color: #bbf7d0;">Redirecting to the game in 3 seconds...</p>
+        <div class="hero-actions" style="margin-top: 24px;">
+          <a href="../play/voxel/" class="btn-primary" style="background: #22c55e; color: white;">Play Game Now</a>
+          <a href="https://github.com/bakarkhaniii364-alt/voxel" target="_blank" class="btn-ghost" style="border-color: #15803d; color: #86efac;">View Source <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="grid-container">
+        <div class="section-label">Engine Details</div>
+        <h2 class="section-heading">Infinite blocks in your browser</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#166534; color:#86efac;">🧱</div>
+            <h3>Dynamic Terrain</h3>
+            <p>Infinite procedurally generated landscape featuring mountains, deserts, grass, and water.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#166534; color:#86efac;">👾</div>
+            <h3>Zombies & Mobs</h3>
+            <p>Fully animated 3D mobs that roam the map, interact with players, and follow navigation algorithms.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#166534; color:#86efac;">🌐</div>
+            <h3>Real-Time Sync</h3>
+            <p>Built with WebSocket synchronization, allowing multiple players to share and build on the same map.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-new">
+    <div class="grid-container">
+      <div class="footer-wordmark">Bakarkhaniii</div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-brand">Bakarkhaniii</span>
+        <div class="footer-bottom-links">
+          <a href="../index.html">Home</a>
+          <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>

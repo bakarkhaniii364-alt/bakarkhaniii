@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Aperture Science Quantum Portal Chambers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 3D Canvas Root -->
+    <div id="canvas-container"></div>
+    
+    <!-- Screen Damage/Dissolve/Teleport Flashing -->
+    <div id="screen-flash"></div>
+
+    <!-- Gun Crosshair -->
+    <div id="crosshair">
+        <div id="crosshair-left" class="crosshair-half"></div>
+        <div class="crosshair-dot"></div>
+        <div id="crosshair-right" class="crosshair-half"></div>
+    </div>
+
+    <!-- GLaDOS Subtitles -->
+    <div id="subtitle-box">Welcome to the Aperture Science Computer-Aided Enrichment Center.</div>
+
+    <!-- Industrial HUD system -->
+    <div id="hud">
+        <div class="hud-card">
+            <h1>Aperture Laboratories</h1>
+            <h2 id="hud-status">STANDBY</h2>
+            
+            <div class="hud-row">
+                <span class="hud-label">Portal Blue:</span>
+                <span class="hud-value" id="hud-blue">INACTIVE</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Portal Orange:</span>
+                <span class="hud-value" id="hud-orange">INACTIVE</span>
+            </div>
+            <div id="hud-tracking-blue" class="hud-row-tracking" style="display: none;">
+                <span class="hud-sub-label" style="color: #00bcff;">Blue Track:</span>
+                <span class="hud-sub-value" id="hud-track-blue-val">-</span>
+            </div>
+            <div id="hud-tracking-orange" class="hud-row-tracking" style="display: none;">
+                <span class="hud-sub-label" style="color: #ff8400;">Orange Track:</span>
+                <span class="hud-sub-value" id="hud-track-orange-val">-</span>
+            </div>
+            <div class="hud-row">
+                <span class="hud-label">Testing Loop:</span>
+                <span class="hud-value" style="color: #00e676;">ONLINE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Right Controls (Sound, etc) -->
+    <div class="top-right-controls">
+        <div id="sound-toggle" class="ctrl-icon-btn" title="Toggle Sound">🔊</div>
+    </div>
+
+    <!-- Full-screen Menu & Stats -->
+    <div id="overlay-screen">
+        <!-- Start screen -->
+        <div class="menu-box" id="menu-start">
+            <h2>Aperture Simulation</h2>
+            <p>Welcome, test subject. You are authorized to begin quantum-loop mechanics test track sequences. Please confirm physical input mappings to initiate.</p>
+            
+            <div class="controls-list">
+                <div><span>Move around</span><span class="key">W A S D</span></div>
+                <div><span>Look direction</span><span class="key">Mouse / Swipe</span></div>
+                <div><span>Quantum Portal (Blue)</span><span class="key">Left Click</span></div>
+                <div><span>Quantum Portal (Orange)</span><span class="key">Right Click</span></div>
+                <div><span>Interact / Grab Cube</span><span class="key">E / F</span></div>
+                <div><span>Jump / Lift-off</span><span class="key">Space</span></div>
+            </div>
+
+
+            <button class="btn" id="btn-start">Initiate Test Protocol</button>
+        </div>
+
+        <!-- Victory Screen -->
+        <div class="menu-box" id="menu-victory" style="display: none;">
+            <h2 style="color: #ffaa00;">Test Cleared</h2>
+            <p>Outstanding. You have successfully bypassed all hazardous loops using quantum gateways. Aperture Science congratulates you on remaining alive.</p>
+            
+            <div class="controls-list" style="text-align: center;">
+                <h3 style="margin-top: 0; color: #00bcff; text-transform: uppercase; font-size: 14px;">Chamber Statistics</h3>
+                <p>Time Elapsed: <span id="stat-time" style="font-weight: bold; color: #fff;">0</span> seconds</p>
+                <p>Portals Placed: <span id="stat-portals" style="font-weight: bold; color: #fff;">0</span></p>
+            </div>
+
+            <button class="btn" id="btn-restart">Re-enter Chambers</button>
+        </div>
+    </div>
+
+    <!-- Mobile HUD Controls -->
+    <div id="mobile-controls">
+        <div class="joystick-container" id="joystick">
+            <div class="joystick-handle" id="joystick-handle"></div>
+        </div>
+        <div class="mobile-btn-container">
+            <div class="m-btn" id="m-btn-blue">Blue</div>
+            <div class="m-btn" id="m-btn-orange">Orange</div>
+            <div class="m-btn" id="m-btn-grab">Grab</div>
+            <div class="m-btn" id="m-btn-jump">Jump</div>
+        </div>
+    </div>
+
+    <!-- Import Map for Modular JS -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Main Game Orchestrator Module -->
+    <script type="module" src="game.js?v=6"></script>
+</body>
+</html>
