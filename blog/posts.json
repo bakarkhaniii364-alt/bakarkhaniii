@@ -1,0 +1,86 @@
+[
+  {
+    "id": "introducing-bakarkhaniii",
+    "title": "Introducing Bakarkhaniii: A personal dev hub built to last",
+    "description": "Why I built a personal hub instead of just shipping individual apps, and what I'm planning next.",
+    "category": "Launch",
+    "date": "July 2, 2026",
+    "readTime": "5 min read",
+    "iconColor": "#60a5fa",
+    "iconPath": "M12 2C6.5 2 2 6.5 2 12c0 2.5 1 4.5 2.5 6L18 4.5C16.5 3 14.5 2 12 2z M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h8c0-2.31-1-4.24-2.5-5.5z M9 15l2 2",
+    "tags": ["Launch", "Productivity", "Web"],
+    "content": "Building software is easy, but maintaining a consistent identity for your projects is hard. For a long time, I shipped projects onto individual domains, scattered across various free tiers. Eventually, it became a mess to track, update, and showcase. That's why I created **Bakarkhaniii**.\n\nBakarkhaniii serves as a unified dev hub—a centralized index of everything I build, from simple desktop utilities to WebGL physics prototypes. It's built as a modular static site designed to be lightning-fast, highly accessible, and visually cohesive.\n\n## The Architecture\n\nI wanted this site to load instantly and have no heavy framework bloat. It runs entirely on HTML, Vanilla CSS, and modular Vanilla JS. The animations are optimized using CSS keyframes and hardware acceleration. It is hosted on Cloudflare Pages for rapid global edge delivery.\n\n## What's Next?\n\nOver the next few months, I will be adding more project detail pages and updating my existing WebGL games to load natively inline. Stay tuned for behind-the-scenes breakdowns of the engineering challenges I solve along the way!"
+  },
+  {
+    "id": "building-trackxpense",
+    "title": "Building Trackxpense: why expense apps get it wrong",
+    "description": "Most expense apps are over-engineered. Here's what I focused on instead.",
+    "category": "Product",
+    "date": "June 20, 2026",
+    "readTime": "4 min read",
+    "iconColor": "#10b981",
+    "iconPath": "M2 6h20v12H2z M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z M6 12h.01 M18 12h.01",
+    "tags": ["Product", "Mobile", "UX"],
+    "content": "Most personal finance apps suffer from feature creep. They force you to connect your bank accounts, categorize every coffee purchase into ten sub-categories, and flood you with charts that don't actually change your spending behavior. When I built **Trackxpense**, I wanted to strip all of that away.\n\nTrackxpense is a local-first Android app designed for one thing: rapid logging. If logging an expense takes more than three seconds, people stop doing it. By focusing on a highly optimized, single-screen design and keeping all data stored strictly on-device, Trackxpense makes tracking frictionless.\n\n## Core Principles\n\n1. **Zero Cloud Dependencies:** Your financial data belongs on your phone, not in a third-party database.\n2. **Speed Over Depth:** A fast entry flow is better than deep analytics.\n3. **Offline Working:** Works perfectly in subways, remote locations, or during flight mode."
+  },
+  {
+    "id": "local-first-default",
+    "title": "Local-first is not a trend, it's the right default",
+    "description": "The case for building software that works entirely offline, by design.",
+    "category": "Privacy",
+    "date": "June 10, 2026",
+    "readTime": "7 min read",
+    "iconColor": "#14b8a6",
+    "iconPath": "M3 11h18v11H3z M7 11V7a5 5 0 0 1 10 0v4",
+    "tags": ["Privacy", "Architecture", "Web"],
+    "content": "We have spent the last decade building web applications that break the moment your internet connection drops. Every button click makes a round-trip to a server thousands of miles away. It's time to shift our architectural default back to the client: **local-first**.\n\nLocal-first software combines the best of both worlds: the ownership and speed of local desktop applications, with the sync capabilities of cloud services. In this post, we explore CRDTs (Conflict-free Replicated Data Types) and how local storage engines like IndexedDB and SQLite-in-Wasm enable a new generation of robust, privacy-respecting software."
+  },
+  {
+    "id": "why-couples-app",
+    "title": "Why I built a couples app before a todo app",
+    "description": "On building something personal before building something \"useful.\"",
+    "category": "Story",
+    "date": "May 30, 2026",
+    "readTime": "3 min read",
+    "iconColor": "#f43f5e",
+    "iconPath": "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z",
+    "tags": ["Story", "Design", "Personal"],
+    "content": "Every developer's first project is usually a todo list app. It is the hello world of database integrations. But todo lists are sterile and boring. They don't capture emotion. \n\nWhen I wanted to learn real-time web sync, I decided to build a private shared dashboard for me and my partner. By focusing on something deeply personal, I ended up learning much more about real-time state synchronization, shared canvases, and collaborative interfaces than I ever would have building another Kanban board."
+  },
+  {
+    "id": "stealing-ui-art",
+    "title": "Stealing like an artist: what Antigravity taught me about UI",
+    "description": "How I studied Google's Antigravity site to rebuild my design system from scratch.",
+    "category": "Design",
+    "date": "May 18, 2026",
+    "readTime": "6 min read",
+    "iconColor": "#d946ef",
+    "iconPath": "M12 2a10 10 0 0 0-10 10c0 2.7.9 5.2 2.8 7l1.7-1a8 8 0 1 1 11 0l1.7 1c1.9-1.8 2.8-4.3 2.8-7A10 10 0 0 0 12 2z",
+    "tags": ["Design", "UI/UX", "CSS"],
+    "content": "Google's internal web tool designs are masterclasses in minimalist utility. They blend clean typographic scales with high contrast borders and tactile shadows. When rebuilding the design tokens for Bakarkhaniii, I extensively analyzed these layouts.\n\nGreat UI is not about complex graphics or distracting parallax scrolls. It is about layout predictability, focus outlines, clear spacing, and curated palettes. This article highlights the CSS utility tokens I extracted and how they power the layout you see today."
+  },
+  {
+    "id": "building-yard",
+    "title": "Building Yard: when your friends need a home on the internet",
+    "description": "The origin story of a friend-group app that started as a shared Google Doc.",
+    "category": "Story",
+    "date": "May 5, 2026",
+    "readTime": "4 min read",
+    "iconColor": "#3b82f6",
+    "iconPath": "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75",
+    "tags": ["Story", "Product", "Collaboration"],
+    "content": "Every close friend group has a bunch of inside jokes, shared links, and plans that get lost in the noise of chat apps. We tried using a pinned Google Doc, but it quickly became unreadable. \n\n**Yard** was born to solve this. It's a lightweight, real-time shared virtual corkboard where friends can pin notes, vote on weekend plans, and upload photos. It is simple, private, and has become the digital living room of our friend group."
+  },
+  {
+    "id": "cloudflare-pages-deploys",
+    "title": "Why I ship with Cloudflare Pages and never look back",
+    "description": "Zero-config deploys, edge performance, and free tier that actually covers real usage.",
+    "category": "Dev",
+    "date": "April 22, 2026",
+    "readTime": "5 min read",
+    "iconColor": "#ea580c",
+    "iconPath": "M4 17l6-6-6-6 M12 19h8",
+    "tags": ["Dev", "Hosting", "Cloudflare"],
+    "content": "Hosting a static website in 2026 shouldn't require setting up web servers, configuring SSL certs, or paying a premium for build minutes. After testing multiple hosting providers, I moved everything to Cloudflare Pages.\n\nIn this article, I discuss how Cloudflare's global edge network guarantees sub-100ms loading times globally, why their free tier is the most generous on the market, and how their Git integration automates preview deployments with zero configuration."
+  }
+]

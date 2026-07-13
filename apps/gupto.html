@@ -5,14 +5,22 @@
   <title>Gupto — Bakarkhaniii</title>
   <meta name="description" content="A multiplayer word deduction game running natively in your browser.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="3;url=../play/gupto/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../index.css">
+
+  <link rel="canonical" href="https://bakarkhaniii364-alt.github.io/apps/gupto.html">
+  <meta property="og:title" content="Gupto — Bakarkhaniii">
+  <meta property="og:description" content="View details of gupto project.">
+  <meta property="og:url" content="https://bakarkhaniii364-alt.github.io/apps/gupto.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header class="nav-bar" id="nav">
     <div class="nav-inner">
@@ -156,6 +164,36 @@
           </div>
         </div>
 
+        <!-- Tools dropdown -->
+        <div class="nav-item" id="navTools">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Tools <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Web tools & visualizers</h3>
+              <a href="../index.html#tools" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Tools</p>
+              <div class="dropdown-items">
+                <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Droste Morph</span>
+                </a>
+                <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10a4.5 4.5 0 019 0 3.5 3.5 0 011.5 6H4a3.5 3.5 0 011.5-6z" fill="currentColor"/></svg>
+                  </span>
+                  <span class="di-name">Word Cloud</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <a href="../blog.html" class="nav-link">Blog</a>
         <a href="../about.html" class="nav-link">About</a>
       </nav>
@@ -176,59 +214,178 @@
   </header>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <main>
-    <section class="page-hero" style="background: linear-gradient(135deg, #311042 0%, #1c0529 100%); color: white;">
+  <main id="main-content">
+    <!-- Premium Gradient Hero (Original Layout Restored & Refined) -->
+    <section class="page-hero" style="background: linear-gradient(135deg, #311042 0%, #1c0529 100%); color: white; padding: 60px 0 80px;">
       <div class="grid-container">
-        <div class="page-breadcrumb">
+        <div class="page-breadcrumb" style="margin-bottom: 24px;">
           <a href="../index.html">Bakarkhaniii</a>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Games</span>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Gupto</span>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <a href="../index.html#games">Games</a>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <span style="color: var(--on-surface-var);">Gupto</span>
         </div>
-        <h1 style="color: white;">Real-time multiplayer<br>deduction game.</h1>
-        <p class="page-tagline" style="color: #c084fc;">A multiplayer word deduction system built with Socket.io WebSockets, featuring synchronized game state clocks, room lobbying, and client-side deduction boards.</p>
-        <p style="margin-top: 20px; font-size: 14px; color: #e9d5ff;">Redirecting to the game in 3 seconds...</p>
-        <div class="hero-actions" style="margin-top: 24px;">
-          <a href="../play/gupto/" class="btn-primary" style="background: #a855f7; color: white;">Play Game Now</a>
-          <a href="https://github.com/bakarkhaniii364-alt/gupto" target="_blank" class="btn-ghost" style="border-color: #4c1d95; color: #c084fc;">View Source <span class="arrow">→</span></a>
+        <h1 style="color: white; margin-bottom: 16px;">Real-time multiplayer<br>deduction game.</h1>
+        <p class="page-tagline" style="max-width: 800px; margin-bottom: 32px; font-size: var(--md); line-height: var(--md-lh);">A multiplayer word deduction system built with Socket.io WebSockets, featuring synchronized game state clocks, room lobbying, and client-side deduction boards.</p>
+        <div class="hero-actions">
+          
+      <a href="../play/gupto/" class="btn-primary" style="background: #a855f7; color: white;">Play Game Now</a>
+      <a href="https://github.com/bakarkhaniii364-alt/gupto" target="_blank" class="btn-ghost" style="border-color: #4c1d95; color: #c084fc;">View Source <span class="arrow">→</span></a>
+    
         </div>
       </div>
     </section>
 
-    <section class="section" id="features">
-      <div class="grid-container">
-        <div class="section-label">Technical Overview</div>
-        <h2 class="section-heading">WebSocket Game Synchronization</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h3>WebSocket Synced Lobby</h3>
-            <p>Socket.io state machine synchronizing room player grids, active voters, and game turn status under 50ms latency.</p>
+    <!-- Main Project Guide Grid -->
+    <section class="section" id="overview" style="padding: 60px 0;">
+      <div class="grid-container" style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start;">
+        <!-- Left: Case Study, Description & Usage -->
+        <div>
+          <div class="section-label">Product Guide</div>
+          <h2 class="section-heading" style="margin-bottom: 24px;">Overview & Setup</h2>
+          
+          <!-- Detailed Description -->
+          <div style="color: var(--on-surface-var); line-height: var(--sm-lh); font-size: var(--sm); margin-bottom: 40px;" class="store-description">
+            <p>Gupto is a thrilling real-time multiplayer board game of secret words and team deducing. Room lobbies synchronize player lists and active votes instantly. Node.js backend handles game states, distributed card grids, and turn rules under 50ms latency ticks.</p><p>Use the fully responsive web client boards to mark clues, coordinate with teammates, and vote out opponents before they identify your secret coordinates.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5l-.5-.5"/></svg></div>
-            <h3>Server-Side Rules Engine</h3>
-            <p>Calculates game loops, word card distributions, secret assignment masks, and round end conditions on node server ticks.</p>
+
+          <!-- Step-by-Step Instructions -->
+          <div style="border-top: 1px solid var(--outline); padding-top: 40px;">
+            <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Step-by-Step Instructions</h3>
+            <div class="store-steps">
+              
+      <div class="store-step-item">
+        <div class="store-step-num">1</div>
+        <div class="store-step-text">
+          <h4>Open Play Lobby</h4>
+          <p>Click the main "Play Game Now" button to load the game client instantly in your browser.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">2</div>
+        <div class="store-step-text">
+          <h4>Create or Join Room</h4>
+          <p>Enter a name and create a new custom game room, or enter a room code shared by your friends.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">3</div>
+        <div class="store-step-text">
+          <h4>Guess & Win</h4>
+          <p>Deduce the secret card layouts with your team without hitting the game-ending assassin card.</p>
+        </div>
+      </div>
+    
+            </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <h3>Dynamic Client Lobby</h3>
-            <p>Responsive deduction panel featuring voting triggers, player states indicator, and real-time game logs.</p>
+        </div>
+
+        <!-- Right: Technical Specifications Card -->
+        <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--outline); border-radius: var(--r-xl); padding: 32px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+          <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Technical Specifications</h3>
+          <div class="store-specs-table">
+            <div class="store-spec-row">
+              <span class="store-spec-label">Developer</span>
+              <span class="store-spec-value">Bakarkhaniii</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Category</span>
+              <span class="store-spec-value">Web Multiplayer Game</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">File Size</span>
+              <span class="store-spec-value">Web Resource</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Version</span>
+              <span class="store-spec-value">v1.0.2</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Platforms</span>
+              <span class="store-spec-value">Chrome, Firefox, Safari, Edge</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">License</span>
+              <span class="store-spec-value">MIT (Open Source)</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Technical Overview Capabilities Grid -->
+    <section class="section" id="features" style="border-top: 1px solid var(--outline); padding: 60px 0;">
+      <div class="grid-container">
+        <div class="section-label">Technical Overview</div>
+        <h2 class="section-heading" style="margin-bottom: 40px;">WebSocket Game Synchronization</h2>
+        <div class="feature-grid">
+          
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>WebSocket Lobbies</h3>
+        <p>Instant lobby creation and player grids state synched through WebSockets under 50ms latency.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5l-.5-.5"/></svg></div>
+        <h3>Server Rules Engine</h3>
+        <p>Calculates board grids, team indices, card assignment maps, and turn loops on Node ticks.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#2e1065; color:#a855f7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Dynamic Client Lobby</h3>
+        <p>Responsive deduction panel featuring voting triggers, player states indicator, and real-time game logs.</p>
+      </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <!-- Extra Downloads section (Only for Trackxpense) -->
+    
   </main>
 
   <footer class="footer-new">
     <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline">
+          <p>Bakarkhaniii<br><span style="font-size: var(--sm); font-weight: 400; color: var(--on-surface-var);">BME &amp; Software Projects</span></p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-col-title">Apps</div>
+            <a href="../apps/trackxpense.html">Trackxpense</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Extensions</div>
+            <a href="../apps/unfollow-ext.html">Unfollow Ext</a>
+            <a href="../apps/aegis.html">AEGIS</a>
+            <a href="../apps/photoshop-addon.html">Photoshop Addon</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Games</div>
+            <a href="../apps/gupto.html">Gupto</a>
+            <a href="../apps/portal.html">Portal Game</a>
+            <a href="../apps/voxel.html">Voxel World</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="https://attic-5gp.pages.dev/" target="_blank">Attic</a>
+            <a href="http://yard-1fa.pages.dev/" target="_blank">Yard</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Tools</div>
+            <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank">Droste Morph</a>
+            <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank">Word Cloud</a>
+          </div>
+        </div>
+      </div>
       <div class="footer-wordmark"><span>B</span><span>a</span><span>k</span><span>a</span><span>r</span><span>k</span><span>h</span><span>a</span><span>n</span><span>i</span><span>i</span><span>i</span></div>
       <div class="footer-bottom">
         <span class="footer-bottom-brand">Bakarkhaniii &copy; 2026</span>
         <div class="footer-bottom-links">
-          <a href="../index.html">Home</a>
           <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/bakarkhaniii/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/bakarkhaniii/" target="_blank">Facebook</a>
         </div>
       </div>
     </div>

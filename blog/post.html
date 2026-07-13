@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Loading Post... — Bakarkhaniii Blog</title>
+  <meta name="description" content="Personal projects blog.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Canonical & SEO placeholders -->
+  <link rel="canonical" id="canonical-link" href="">
+  <meta property="og:title" id="og-title" content="Bakarkhaniii Blog">
+  <meta property="og:description" id="og-description" content="Personal projects blog.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" id="og-url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="../index.css">
+  <style>
+    .post-container { max-width: 680px; width: 100%; margin: 0 auto; padding: 0 20px; }
+    .post-header { padding: calc(var(--nav-height) + 72px) 0 48px; border-bottom: 1px solid var(--outline); margin-bottom: 60px; }
+    .post-tag { font-size: var(--xs); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .post-title { font-size: var(--5xl); line-height: var(--5xl-lh); letter-spacing: var(--5xl-ls); font-weight: 500; margin-bottom: 20px; color: var(--on-surface); }
+    .post-meta { font-size: var(--xs); color: var(--palette-grey-400); }
+    .post-body p { font-size: var(--base); line-height: 1.8; color: var(--on-surface-var); margin-bottom: 24px; }
+    .post-body p strong { color: var(--on-surface); font-weight: 500; }
+    .post-body h2 { font-size: var(--2xl); line-height: var(--2xl-lh); letter-spacing: var(--2xl-ls); font-weight: 500; color: var(--on-surface); margin: 48px 0 16px; }
+    .post-body h3 { font-size: var(--xl); line-height: var(--xl-lh); font-weight: 500; margin: 32px 0 12px; }
+    .post-body ul, .post-body ol { padding-left: 24px; margin-bottom: 24px; }
+    .post-body ul { list-style: disc; }
+    .post-body ol { list-style: decimal; }
+    .post-body li { font-size: var(--base); line-height: 1.8; color: var(--on-surface-var); margin-bottom: 8px; }
+    .post-body pre { background: var(--palette-grey-1100); color: var(--palette-grey-50); padding: 24px; border-radius: var(--r-md); font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.7; overflow-x: auto; margin-bottom: 24px; }
+    .post-body blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 32px 0; }
+    .post-body blockquote p { color: var(--on-surface-var); font-style: italic; }
+    .post-body img { border-radius: var(--r-md); margin: 32px 0; width: 100%; }
+    .post-divider { height: 1px; background: var(--outline); margin: 60px 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: var(--sm); color: var(--on-surface-var); transition: color .15s; text-decoration: none; }
+    .back-link:hover { color: var(--on-surface); }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      z-index: 10000;
+      transition: top 0.2s;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 0 0 var(--r-sm) var(--r-sm);
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      gap: 16px;
+      color: var(--on-surface-var);
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--outline);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script type="application/ld+json" id="structured-data"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- NAV -->
+  <header class="nav-bar" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <svg width="26" height="26" viewBox="0 0 1920 1920" fill="none"><path fill="#f3f4f6" d="M 916.5,72.5 C 1160.22,64.6631 1372.88,140.83 1554.5,301C 1721.81,455.461 1817.65,646.628 1842,874.5C 1861.91,1118.36 1795.57,1335.03 1643,1524.5C 1475.22,1721.47 1261.39,1828.31 1001.5,1845C 757.763,1853.33 545.096,1777.33 363.5,1617C 207.916,1473.71 113.75,1296.87 81,1086.5C 49.7735,847.409 103.774,630.075 243,434.5C 389.299,240.197 583.132,122.697 824.5,82C 855.203,77.6968 885.87,74.5301 916.5,72.5 Z"/><path fill="#ffffff" d="M 928.5,222.5 C 1159.41,218.086 1352.91,300.086 1509,468.5C 1642.85,623.037 1704.52,803.037 1694,1008.5C 1677.2,1211.93 1593.03,1381.1 1441.5,1516C 1268.69,1660.56 1070.02,1717.56 845.5,1687C 641.819,1651.78 479.319,1551.28 358,1385.5C 245.566,1222.41 203.233,1042.41 231,845.5C 266.2,641.805 366.7,479.305 532.5,358C 651.362,275.099 783.362,229.933 928.5,222.5 Z"/><path fill="#f3f4f6" d="M 874.5,335.5 C 908.641,333.817 934.474,347.483 952,376.5C 965.706,407.215 962.373,435.882 942,462.5C 782.167,622.333 622.333,782.167 462.5,942C 428.321,966.895 394.321,966.562 360.5,941C 333.29,912.296 328.457,880.129 346,844.5C 348.422,840.656 351.089,836.99 354,833.5C 513.833,673.667 673.667,513.833 833.5,354C 845.512,344.056 859.179,337.89 874.5,335.5 Z"/><path fill="#f3f4f6" d="M 1212.5,415.5 C 1247.48,414.729 1272.98,429.729 1289,460.5C 1300.91,491.704 1296.25,520.037 1275,545.5C 1032.17,788.333 789.333,1031.17 546.5,1274C 520.919,1295.95 492.253,1300.95 460.5,1289C 431.976,1274.28 416.976,1250.78 415.5,1218.5C 416.398,1197.38 423.898,1179.05 438,1163.5C 679.833,921.667 921.667,679.833 1163.5,438C 1177.46,425.185 1193.8,417.685 1212.5,415.5 Z"/><path fill="#f3f4f6" d="M 1413.5,623.5 C 1452,619.991 1479.83,635.324 1497,669.5C 1508.56,700.578 1503.56,728.578 1482,753.5C 1239.17,996.333 996.333,1239.17 753.5,1482C 719.071,1509.72 684.071,1510.39 648.5,1484C 620.625,1455.01 615.792,1422.51 634,1386.5C 637.308,1381.69 640.808,1377.03 644.5,1372.5C 886.798,1130.87 1128.46,889.202 1369.5,647.5C 1381.95,635.276 1396.62,627.276 1413.5,623.5 Z"/><path fill="#f3f4f6" d="M 1498.5,958.5 C 1535.77,957.039 1562.27,973.039 1578,1006.5C 1587.19,1033.72 1583.53,1059.05 1567,1082.5C 1405.83,1243.67 1244.67,1404.83 1083.5,1566C 1049.74,1589.84 1016.41,1589.17 983.5,1564C 958.594,1538.19 952.428,1508.36 965,1474.5C 969.506,1466.82 974.506,1459.49 980,1452.5C 1137.5,1295 1295,1137.5 1452.5,980C 1465.6,967.919 1480.93,960.752 1498.5,958.5 Z"/></svg>
+        <span>Bakarkhaniii</span>
+      </a>
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <!-- Apps dropdown -->
+        <div class="nav-item" id="navApps">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Apps <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Native apps for desktop & mobile</h3>
+              <a href="../index.html#apps" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Apps</p>
+              <div class="dropdown-items">
+                <a href="../apps/trackxpense.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-green">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 2v16M6 6h6a2 2 0 010 4H7a2 2 0 000 4h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Trackxpense (APK)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extensions dropdown -->
+        <div class="nav-item" id="navExtensions">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Extensions <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Browser & app add-ons</h3>
+              <a href="../index.html#extensions" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Extensions</p>
+              <div class="dropdown-items">
+                <a href="../apps/aegis.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h14M8 3v14" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">AEGIS</span>
+                </a>
+                <a href="../apps/unfollow-ext.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-orange">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 17a7 7 0 0114 0" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Unfollow Ext</span>
+                </a>
+                <a href="../apps/photoshop-addon.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-amber">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Photoshop Addon</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Games dropdown -->
+        <div class="nav-item" id="navGames">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Games <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">HTML & WebGL browser games</h3>
+              <a href="../index.html#games" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Games</p>
+              <div class="dropdown-items">
+                <a href="../apps/gupto.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Gupto</span>
+                </a>
+                <a href="../apps/portal.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-cyan">
+                    <svg viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="10" rx="4" ry="8" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Portal Game</span>
+                </a>
+                <a href="../apps/voxel.html" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-green">
+                    <svg viewBox="0 0 20 20" fill="none"><rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Voxel World</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Webapps dropdown -->
+        <div class="nav-item" id="navWebapps">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Webapps <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Hosted web solutions & projects</h3>
+              <a href="../index.html#webapps" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Webapps</p>
+              <div class="dropdown-items">
+                <a href="https://attic-5gp.pages.dev/" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-rose">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a5 5 0 0110 0c0 .78-.14 1.54-.4 2.24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Attic</span>
+                </a>
+                <a href="http://yard-1fa.pages.dev/" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-blue">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 17c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                  <span class="di-name">Yard</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools dropdown -->
+        <div class="nav-item" id="navTools">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Tools <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Web tools & visualizers</h3>
+              <a href="../index.html#tools" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Tools</p>
+              <div class="dropdown-items">
+                <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Droste Morph</span>
+                </a>
+                <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10a4.5 4.5 0 019 0 3.5 3.5 0 011.5 6H4a3.5 3.5 0 011.5-6z" fill="currentColor"/></svg>
+                  </span>
+                  <span class="di-name">Word Cloud</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="../blog.html" class="nav-link">Blog</a>
+        <a href="../about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="nav-socials">
+        <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-social-item" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/bakarkhaniii/" target="_blank" class="nav-social-item" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
+      <a href="https://github.com/bakarkhaniii364-alt" target="_blank" class="nav-cta">GitHub →</a>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <main id="main-content">
+    <div class="grid-container">
+      <!-- Loading spinner -->
+      <div id="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading article content...</p>
+      </div>
+
+      <!-- Article content -->
+      <div id="post-view" class="post-container" style="display: none;">
+        <header class="post-header">
+          <div class="post-tag" id="post-category">Category</div>
+          <h1 class="post-title" id="post-title-heading">Blog Post Title</h1>
+          <p class="post-meta" id="post-meta-details">Date · Read Time</p>
+        </header>
+
+        <article class="post-body" id="post-content-body">
+          <!-- Dynamic Markdown rendering goes here -->
+        </article>
+
+        <div class="post-divider"></div>
+        <a href="../blog.html" class="back-link">← Back to Blog</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-new" style="margin-top:80px;">
+    <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline">
+          <p>Bakarkhaniii<br><span style="font-size: var(--sm); font-weight: 400; color: var(--on-surface-var);">BME &amp; Software Projects</span></p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-col-title">Apps</div>
+            <a href="../apps/trackxpense.html">Trackxpense</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Extensions</div>
+            <a href="../apps/unfollow-ext.html">Unfollow Ext</a>
+            <a href="../apps/aegis.html">AEGIS</a>
+            <a href="../apps/photoshop-addon.html">Photoshop Addon</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Games</div>
+            <a href="../apps/gupto.html">Gupto</a>
+            <a href="../apps/portal.html">Portal Game</a>
+            <a href="../apps/voxel.html">Voxel World</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="https://attic-5gp.pages.dev/" target="_blank">Attic</a>
+            <a href="http://yard-1fa.pages.dev/" target="_blank">Yard</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Tools</div>
+            <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank">Droste Morph</a>
+            <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank">Word Cloud</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-wordmark"><span>B</span><span>a</span><span>k</span><span>a</span><span>r</span><span>k</span><span>h</span><span>a</span><span>n</span><span>i</span><span>i</span><span>i</span></div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-brand">Bakarkhaniii &copy; 2026</span>
+        <div class="footer-bottom-links">
+          <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/bakarkhaniii/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/bakarkhaniii/" target="_blank">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+  
+  <script>
+    // Custom Markdown to HTML Compiler
+    function markdownToHTML(md) {
+      const lines = md.split('\n');
+      let html = '';
+      let inList = false;
+      let inCode = false;
+      let codeContent = [];
+      let inQuote = false;
+      let quoteContent = [];
+
+      for (let line of lines) {
+        const trimmed = line.trim();
+
+        // Code block
+        if (trimmed.startsWith('```')) {
+          if (inCode) {
+            html += `<pre><code>${codeContent.join('\n')}</code></pre>`;
+            codeContent = [];
+            inCode = false;
+          } else {
+            inCode = true;
+          }
+          continue;
+        }
+        if (inCode) {
+          codeContent.push(line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+          continue;
+        }
+
+        // Blockquote
+        if (trimmed.startsWith('>')) {
+          if (!inQuote) {
+            inQuote = true;
+          }
+          quoteContent.push(trimmed.replace(/^>\s*/, ''));
+          continue;
+        } else if (inQuote) {
+          html += `<blockquote><p>${parseInline(quoteContent.join(' '))}</p></blockquote>`;
+          quoteContent = [];
+          inQuote = false;
+        }
+
+        // Unordered List
+        if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+          if (!inList) {
+            html += '<ul>';
+            inList = true;
+          }
+          html += `<li>${parseInline(trimmed.slice(2))}</li>`;
+          continue;
+        } else if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+
+        // Headings
+        if (trimmed.startsWith('### ')) {
+          html += `<h3>${parseInline(trimmed.slice(4))}</h3>`;
+          continue;
+        }
+        if (trimmed.startsWith('## ')) {
+          html += `<h2>${parseInline(trimmed.slice(3))}</h2>`;
+          continue;
+        }
+        if (trimmed.startsWith('# ')) {
+          html += `<h1>${parseInline(trimmed.slice(2))}</h1>`;
+          continue;
+        }
+
+        // Blank line
+        if (trimmed === '') {
+          continue;
+        }
+
+        // Paragraph
+        html += `<p>${parseInline(line)}</p>`;
+      }
+
+      // Cleanup remaining blocks
+      if (inCode) {
+        html += `<pre><code>${codeContent.join('\n')}</code></pre>`;
+      }
+      if (inQuote) {
+        html += `<blockquote><p>${parseInline(quoteContent.join(' '))}</p></blockquote>`;
+      }
+      if (inList) {
+        html += '</ul>';
+      }
+
+      return html;
+    }
+
+    function parseInline(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    }
+
+    // Load dynamic post
+    async function loadPost() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      
+      if (!postId) {
+        window.location.href = '../blog.html';
+        return;
+      }
+
+      try {
+        const response = await fetch('./posts.json');
+        if (!response.ok) throw new Error('Failed to load posts database.');
+        const posts = await response.json();
+        
+        const post = posts.find(p => p.id === postId);
+        if (!post) {
+          document.getElementById('loading').innerHTML = `
+            <h2 style="color:var(--accent); font-weight:500;">404 Post Not Found</h2>
+            <p>We couldn't find the article you are looking for.</p>
+            <a href="../blog.html" class="btn-primary" style="margin-top:16px;">Back to Blog</a>
+          `;
+          return;
+        }
+
+        // Render contents
+        document.title = `${post.title} — Bakarkhaniii Blog`;
+        document.getElementById('post-category').textContent = post.category;
+        document.getElementById('post-title-heading').textContent = post.title;
+        document.getElementById('post-meta-details').textContent = `${post.date} · ${post.readTime}`;
+        document.getElementById('post-content-body').innerHTML = markdownToHTML(post.content);
+
+        // Update Dynamic SEO Tags
+        const pageUrl = window.location.href;
+        document.getElementById('canonical-link').setAttribute('href', pageUrl);
+        document.getElementById('og-title').setAttribute('content', post.title);
+        document.getElementById('og-description').setAttribute('content', post.description);
+        document.getElementById('og-url').setAttribute('content', pageUrl);
+
+        // Render structured data schema
+        const schema = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "description": post.description,
+          "datePublished": post.date,
+          "author": {
+            "@type": "Person",
+            "name": "Abu Bakar Siddik"
+          }
+        };
+        document.getElementById('structured-data').textContent = JSON.stringify(schema);
+
+        // Show contents
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('post-view').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        document.getElementById('loading').innerHTML = `
+          <h2 style="color:var(--accent); font-weight:500;">Failed to Load Article</h2>
+          <p>There was a problem loading this post. Please try again later.</p>
+        `;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadPost);
+  </script>
+</body>
+</html>

@@ -5,14 +5,22 @@
   <title>Voxel World — Bakarkhaniii</title>
   <meta name="description" content="A 3D multiplayer voxel game running natively in your browser.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="3;url=../play/voxel/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../index.css">
+
+  <link rel="canonical" href="https://bakarkhaniii364-alt.github.io/apps/voxel.html">
+  <meta property="og:title" content="Voxel — Bakarkhaniii">
+  <meta property="og:description" content="View details of voxel project.">
+  <meta property="og:url" content="https://bakarkhaniii364-alt.github.io/apps/voxel.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header class="nav-bar" id="nav">
     <div class="nav-inner">
@@ -156,6 +164,36 @@
           </div>
         </div>
 
+        <!-- Tools dropdown -->
+        <div class="nav-item" id="navTools">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Tools <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Web tools & visualizers</h3>
+              <a href="../index.html#tools" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Tools</p>
+              <div class="dropdown-items">
+                <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Droste Morph</span>
+                </a>
+                <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10a4.5 4.5 0 019 0 3.5 3.5 0 011.5 6H4a3.5 3.5 0 011.5-6z" fill="currentColor"/></svg>
+                  </span>
+                  <span class="di-name">Word Cloud</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <a href="../blog.html" class="nav-link">Blog</a>
         <a href="../about.html" class="nav-link">About</a>
       </nav>
@@ -176,59 +214,178 @@
   </header>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <main>
-    <section class="page-hero" style="background: linear-gradient(135deg, #14532d 0%, #166534 100%); color: white;">
+  <main id="main-content">
+    <!-- Premium Gradient Hero (Original Layout Restored & Refined) -->
+    <section class="page-hero" style="background: linear-gradient(135deg, #052e16 0%, #022c22 100%); color: white; padding: 60px 0 80px;">
       <div class="grid-container">
-        <div class="page-breadcrumb">
+        <div class="page-breadcrumb" style="margin-bottom: 24px;">
           <a href="../index.html">Bakarkhaniii</a>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Games</span>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Voxel World</span>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <a href="../index.html#games">Games</a>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <span style="color: var(--on-surface-var);">Voxel</span>
         </div>
-        <h1 style="color: white;">Multiplayer voxel<br>graphics engine.</h1>
-        <p class="page-tagline" style="color: #86efac;">Infinite 3D voxel sandbox built with React Three Fiber, WebSockets, Perlin noise terrain generators, and mesh geometry optimization.</p>
-        <p style="margin-top: 20px; font-size: 14px; color: #bbf7d0;">Redirecting to the game in 3 seconds...</p>
-        <div class="hero-actions" style="margin-top: 24px;">
-          <a href="../play/voxel/" class="btn-primary" style="background: #22c55e; color: white;">Play Game Now</a>
-          <a href="https://github.com/bakarkhaniii364-alt/voxel" target="_blank" class="btn-ghost" style="border-color: #15803d; color: #86efac;">View Source <span class="arrow">→</span></a>
+        <h1 style="color: white; margin-bottom: 16px;">Procedural 3D voxel<br>sandbox engine.</h1>
+        <p class="page-tagline" style="max-width: 800px; margin-bottom: 32px; font-size: var(--md); line-height: var(--md-lh);">An infinite 3D voxel sandbox engine built with WebGL and Three.js. Generates infinite terrain chunks using Perlin noise algorithms and octree collision maps.</p>
+        <div class="hero-actions">
+          
+      <a href="../play/voxel/" class="btn-primary" style="background: #16a34a; color: white;">Play Game Now</a>
+      <a href="https://github.com/bakarkhaniii364-alt/voxel" target="_blank" class="btn-ghost" style="border-color: #14532d; color: #4ade80;">View Source <span class="arrow">→</span></a>
+    
         </div>
       </div>
     </section>
 
-    <section class="section" id="features">
-      <div class="grid-container">
-        <div class="section-label">Technical Overview</div>
-        <h2 class="section-heading">Graphics Culling &amp; Coordinate Interpolation</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#166534; color:#86efac;"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-            <h3>Procedural Noise Grids</h3>
-            <p>Generates dynamic block heights, biome variations, and water tables using layered Perlin and Simplex noise algorithms.</p>
+    <!-- Main Project Guide Grid -->
+    <section class="section" id="overview" style="padding: 60px 0;">
+      <div class="grid-container" style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start;">
+        <!-- Left: Case Study, Description & Usage -->
+        <div>
+          <div class="section-label">Product Guide</div>
+          <h2 class="section-heading" style="margin-bottom: 24px;">Overview & Setup</h2>
+          
+          <!-- Detailed Description -->
+          <div style="color: var(--on-surface-var); line-height: var(--sm-lh); font-size: var(--sm); margin-bottom: 40px;" class="store-description">
+            <p>Voxel World is a performant technical demonstration of procedural 3D world building running fully inside the browser. World chunks compile dynamically inside web workers, enabling a stable 60 FPS.</p><p>Implements fractional Brownian motion (fBm) Perlin noise for terrain heights, custom octree coordinate partition grids for raycasted block mine/build triggers, and simple local block storage.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#166534; color:#86efac;"><svg viewBox="0 0 24 24"><path d="M9 10h.01M15 10h.01M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z"/></svg></div>
-            <h3>Chunk Octree Optimizations</h3>
-            <p>Optimizes GPU draw calls by performing face-culling checks, rendering only the visible block faces inside active chunks.</p>
+
+          <!-- Step-by-Step Instructions -->
+          <div style="border-top: 1px solid var(--outline); padding-top: 40px;">
+            <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Step-by-Step Instructions</h3>
+            <div class="store-steps">
+              
+      <div class="store-step-item">
+        <div class="store-step-num">1</div>
+        <div class="store-step-text">
+          <h4>Launch Voxel Canvas</h4>
+          <p>Click "Play Game Now" to start the procedural rendering pipeline in the overlay modal.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">2</div>
+        <div class="store-step-text">
+          <h4>Navigate Terrain</h4>
+          <p>Use <code>W, A, S, D</code> keys to walk, <code>Space</code> to jump, and mouse pointer to look around.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">3</div>
+        <div class="store-step-text">
+          <h4>Mine & Build Blocks</h4>
+          <p>Left-click to break blocks and Right-click to place blocks. Scroll the mouse wheel to select blocks.</p>
+        </div>
+      </div>
+    
+            </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#166534; color:#86efac;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-            <h3>Coordinated Coordinate LERP</h3>
-            <p>Synchronizes multiple player positions using high-frequency WebSockets combined with client-side linear coordinate interpolation.</p>
+        </div>
+
+        <!-- Right: Technical Specifications Card -->
+        <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--outline); border-radius: var(--r-xl); padding: 32px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+          <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Technical Specifications</h3>
+          <div class="store-specs-table">
+            <div class="store-spec-row">
+              <span class="store-spec-label">Developer</span>
+              <span class="store-spec-value">Bakarkhaniii</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Category</span>
+              <span class="store-spec-value">WebGL Infinite Sandbox</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">File Size</span>
+              <span class="store-spec-value">Web Resource</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Version</span>
+              <span class="store-spec-value">v2.1.2</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Platforms</span>
+              <span class="store-spec-value">Chrome, Firefox, Edge, Safari (WebGL)</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">License</span>
+              <span class="store-spec-value">MIT (Open Source)</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Technical Overview Capabilities Grid -->
+    <section class="section" id="features" style="border-top: 1px solid var(--outline); padding: 60px 0;">
+      <div class="grid-container">
+        <div class="section-label">Technical Overview</div>
+        <h2 class="section-heading" style="margin-bottom: 40px;">WebGL Procedural Generation & Meshing</h2>
+        <div class="feature-grid">
+          
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#f0fdf4; color:#16a34a;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div>
+        <h3>Perlin Height Generator</h3>
+        <p>Compiles heightmaps in web workers to generate mountains, valleys, and caves smoothly.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#f0fdf4; color:#16a34a;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <h3>Voxel Collision Grid</h3>
+        <p>Optimized octree partitioning coordinates to map dynamic raycasts and collisions at 60 FPS.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#f0fdf4; color:#16a34a;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <h3>Web Worker Meshing</h3>
+        <p>Frees browser UI frame loops by compiling chunks asynchronously inside dedicated web workers.</p>
+      </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <!-- Extra Downloads section (Only for Trackxpense) -->
+    
   </main>
 
   <footer class="footer-new">
     <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline">
+          <p>Bakarkhaniii<br><span style="font-size: var(--sm); font-weight: 400; color: var(--on-surface-var);">BME &amp; Software Projects</span></p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-col-title">Apps</div>
+            <a href="../apps/trackxpense.html">Trackxpense</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Extensions</div>
+            <a href="../apps/unfollow-ext.html">Unfollow Ext</a>
+            <a href="../apps/aegis.html">AEGIS</a>
+            <a href="../apps/photoshop-addon.html">Photoshop Addon</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Games</div>
+            <a href="../apps/gupto.html">Gupto</a>
+            <a href="../apps/portal.html">Portal Game</a>
+            <a href="../apps/voxel.html">Voxel World</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="https://attic-5gp.pages.dev/" target="_blank">Attic</a>
+            <a href="http://yard-1fa.pages.dev/" target="_blank">Yard</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Tools</div>
+            <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank">Droste Morph</a>
+            <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank">Word Cloud</a>
+          </div>
+        </div>
+      </div>
       <div class="footer-wordmark"><span>B</span><span>a</span><span>k</span><span>a</span><span>r</span><span>k</span><span>h</span><span>a</span><span>n</span><span>i</span><span>i</span><span>i</span></div>
       <div class="footer-bottom">
         <span class="footer-bottom-brand">Bakarkhaniii &copy; 2026</span>
         <div class="footer-bottom-links">
-          <a href="../index.html">Home</a>
           <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/bakarkhaniii/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/bakarkhaniii/" target="_blank">Facebook</a>
         </div>
       </div>
     </div>

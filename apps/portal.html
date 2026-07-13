@@ -5,14 +5,22 @@
   <title>Portal Game — Bakarkhaniii</title>
   <meta name="description" content="A 3D portal-puzzle game running natively in your browser.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="3;url=../play/portal/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../index.css">
+
+  <link rel="canonical" href="https://bakarkhaniii364-alt.github.io/apps/portal.html">
+  <meta property="og:title" content="Portal — Bakarkhaniii">
+  <meta property="og:description" content="View details of portal project.">
+  <meta property="og:url" content="https://bakarkhaniii364-alt.github.io/apps/portal.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header class="nav-bar" id="nav">
     <div class="nav-inner">
@@ -156,6 +164,36 @@
           </div>
         </div>
 
+        <!-- Tools dropdown -->
+        <div class="nav-item" id="navTools">
+          <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
+            Tools <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-promo">
+              <h3 class="dropdown-promo-title">Web tools & visualizers</h3>
+              <a href="../index.html#tools" class="dropdown-see-all">See all</a>
+            </div>
+            <div class="dropdown-section">
+              <p class="dropdown-section-label">Tools</p>
+              <div class="dropdown-items">
+                <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-purple">
+                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </span>
+                  <span class="di-name">Droste Morph</span>
+                </a>
+                <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank" class="dropdown-item" role="menuitem">
+                  <span class="di-icon di-teal">
+                    <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10a4.5 4.5 0 019 0 3.5 3.5 0 011.5 6H4a3.5 3.5 0 011.5-6z" fill="currentColor"/></svg>
+                  </span>
+                  <span class="di-name">Word Cloud</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <a href="../blog.html" class="nav-link">Blog</a>
         <a href="../about.html" class="nav-link">About</a>
       </nav>
@@ -176,59 +214,178 @@
   </header>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <main>
-    <section class="page-hero" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+  <main id="main-content">
+    <!-- Premium Gradient Hero (Original Layout Restored & Refined) -->
+    <section class="page-hero" style="background: linear-gradient(135deg, #082f49 0%, #0c4a6e 100%); color: white; padding: 60px 0 80px;">
       <div class="grid-container">
-        <div class="page-breadcrumb">
+        <div class="page-breadcrumb" style="margin-bottom: 24px;">
           <a href="../index.html">Bakarkhaniii</a>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Games</span>
-          <span style="color:var(--palette-grey-300)">›</span>
-          <span>Portal Game</span>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <a href="../index.html#games">Games</a>
+          <span style="color:var(--palette-grey-300); margin: 0 4px;">›</span>
+          <span style="color: var(--on-surface-var);">Portal</span>
         </div>
-        <h1 style="color: white;">3D WebGL portal &amp;<br>physics simulator.</h1>
-        <p class="page-tagline" style="color: #94a3b8;">WebGL spatial simulation utilizing Three.js stencil buffers, raycast collision boxes, and procedural Web Audio oscillator synthesizers.</p>
-        <p style="margin-top: 20px; font-size: 14px; color: #38bdf8;">Redirecting to the game in 3 seconds...</p>
-        <div class="hero-actions" style="margin-top: 24px;">
-          <a href="../play/portal/" class="btn-primary" style="background: #38bdf8; color: #0f172a;">Play Game Now</a>
-          <a href="https://github.com/bakarkhaniii364-alt/portal" target="_blank" class="btn-ghost" style="border-color: #334155; color: #94a3b8;">View Source <span class="arrow">→</span></a>
+        <h1 style="color: white; margin-bottom: 16px;">WebGL 3D Gravity<br>and Space Puzzle.</h1>
+        <p class="page-tagline" style="max-width: 800px; margin-bottom: 32px; font-size: var(--md); line-height: var(--md-lh);">An interactive WebGL puzzle game utilizing Three.js and custom gravity collision grids. Route portals, manipulate space momentum, and escape dynamic chambers.</p>
+        <div class="hero-actions">
+          
+      <a href="../play/portal/" class="btn-primary" style="background: #0284c7; color: white;">Play Game Now</a>
+      <a href="https://github.com/bakarkhaniii364-alt/portal" target="_blank" class="btn-ghost" style="border-color: #0369a1; color: #38bdf8;">View Source <span class="arrow">→</span></a>
+    
         </div>
       </div>
     </section>
 
-    <section class="section" id="features">
-      <div class="grid-container">
-        <div class="section-label">Technical Overview</div>
-        <h2 class="section-heading">WebGL Rendering &amp; Rigid Body Physics</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg></div>
-            <h3>Stencil Buffer Portals</h3>
-            <p>Calculates portal camera matrices and uses stencil clip masks to render infinite visual tunnels inside WebGL.</p>
+    <!-- Main Project Guide Grid -->
+    <section class="section" id="overview" style="padding: 60px 0;">
+      <div class="grid-container" style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start;">
+        <!-- Left: Case Study, Description & Usage -->
+        <div>
+          <div class="section-label">Product Guide</div>
+          <h2 class="section-heading" style="margin-bottom: 24px;">Overview & Setup</h2>
+          
+          <!-- Detailed Description -->
+          <div style="color: var(--on-surface-var); line-height: var(--sm-lh); font-size: var(--sm); margin-bottom: 40px;" class="store-description">
+            <p>portal is a beautiful browser-based 3D physics puzzle chamber. Fire orange and blue portals that seamlessly wrap space, vectors, and momentum coordinates to solve challenging room exits.</p><p>Features custom gravity vector calculations, rigid-body collision meshes, and dynamic portal render-to-texture shaders to view portal paths inside a smooth 60 FPS WebGL loop.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m9.9 9.9l.707.707"/></svg></div>
-            <h3>Raycast Rigid Body Physics</h3>
-            <p>Implements custom coordinate translations preserving momentum vectors and velocities during portal transitions.</p>
+
+          <!-- Step-by-Step Instructions -->
+          <div style="border-top: 1px solid var(--outline); padding-top: 40px;">
+            <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Step-by-Step Instructions</h3>
+            <div class="store-steps">
+              
+      <div class="store-step-item">
+        <div class="store-step-num">1</div>
+        <div class="store-step-text">
+          <h4>Open Portal Portal</h4>
+          <p>Click "Play Game Now" to launch the WebGL 3D sandbox in a dynamic overlays canvas.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">2</div>
+        <div class="store-step-text">
+          <h4>Learn Controls</h4>
+          <p>Use <code>W, A, S, D</code> keys to run, <code>Space</code> to jump, and mouse pointer to look around.</p>
+        </div>
+      </div>
+      <div class="store-step-item">
+        <div class="store-step-num">3</div>
+        <div class="store-step-text">
+          <h4>Fire Portals</h4>
+          <p>Left-click to open a Blue portal and Right-click to open an Orange portal. Cross chambers!</p>
+        </div>
+      </div>
+    
+            </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon" style="background:#1e293b; color:#38bdf8;"><svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
-            <h3>Procedural Web Audio</h3>
-            <p>Custom oscillator chains synthesize ambient energy fields, laser sound waves, and teleportation audio dynamically.</p>
+        </div>
+
+        <!-- Right: Technical Specifications Card -->
+        <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--outline); border-radius: var(--r-xl); padding: 32px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+          <h3 style="font-size: var(--sm); font-weight: 600; color: white; margin-bottom: 24px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em;">Technical Specifications</h3>
+          <div class="store-specs-table">
+            <div class="store-spec-row">
+              <span class="store-spec-label">Developer</span>
+              <span class="store-spec-value">Bakarkhaniii</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Category</span>
+              <span class="store-spec-value">WebGL 3D Puzzle Game</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">File Size</span>
+              <span class="store-spec-value">Web Resource</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Version</span>
+              <span class="store-spec-value">v1.1.0</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">Platforms</span>
+              <span class="store-spec-value">Chrome, Firefox, Safari, Edge</span>
+            </div>
+            <div class="store-spec-row">
+              <span class="store-spec-label">License</span>
+              <span class="store-spec-value">MIT (Open Source)</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Technical Overview Capabilities Grid -->
+    <section class="section" id="features" style="border-top: 1px solid var(--outline); padding: 60px 0;">
+      <div class="grid-container">
+        <div class="section-label">Technical Overview</div>
+        <h2 class="section-heading" style="margin-bottom: 40px;">WebGL 3D space wrapping physics</h2>
+        <div class="feature-grid">
+          
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#e0f2fe; color:#0284c7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>WebGL 3D Render</h3>
+        <p>Three.js rendering engine compiling real-time portal viewports through secondary scene renders.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#e0f2fe; color:#0284c7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <h3>Vector Routing</h3>
+        <p>Transforms entering momentum and direction vectors smoothly to align physics velocities between portals.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon" style="background:#e0f2fe; color:#0284c7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg></div>
+        <h3>Collision Mesh</h3>
+        <p>Calculates dynamic bounding boxes in Three.js coordinates to restrict coordinate boundaries.</p>
+      </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <!-- Extra Downloads section (Only for Trackxpense) -->
+    
   </main>
 
   <footer class="footer-new">
     <div class="grid-container">
+      <div class="footer-top">
+        <div class="footer-tagline">
+          <p>Bakarkhaniii<br><span style="font-size: var(--sm); font-weight: 400; color: var(--on-surface-var);">BME &amp; Software Projects</span></p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <div class="footer-col-title">Apps</div>
+            <a href="../apps/trackxpense.html">Trackxpense</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Extensions</div>
+            <a href="../apps/unfollow-ext.html">Unfollow Ext</a>
+            <a href="../apps/aegis.html">AEGIS</a>
+            <a href="../apps/photoshop-addon.html">Photoshop Addon</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Games</div>
+            <a href="../apps/gupto.html">Gupto</a>
+            <a href="../apps/portal.html">Portal Game</a>
+            <a href="../apps/voxel.html">Voxel World</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Webapps</div>
+            <a href="https://attic-5gp.pages.dev/" target="_blank">Attic</a>
+            <a href="http://yard-1fa.pages.dev/" target="_blank">Yard</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Tools</div>
+            <a href="https://github.com/bakarkhaniii364-alt/droste-morph" target="_blank">Droste Morph</a>
+            <a href="https://github.com/bakarkhaniii364-alt/word-cloud" target="_blank">Word Cloud</a>
+          </div>
+        </div>
+      </div>
       <div class="footer-wordmark"><span>B</span><span>a</span><span>k</span><span>a</span><span>r</span><span>k</span><span>h</span><span>a</span><span>n</span><span>i</span><span>i</span><span>i</span></div>
       <div class="footer-bottom">
         <span class="footer-bottom-brand">Bakarkhaniii &copy; 2026</span>
         <div class="footer-bottom-links">
-          <a href="../index.html">Home</a>
           <a href="https://github.com/bakarkhaniii364-alt" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/bakarkhaniii/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/bakarkhaniii/" target="_blank">Facebook</a>
         </div>
       </div>
     </div>
