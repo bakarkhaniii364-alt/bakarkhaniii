@@ -39,11 +39,22 @@ class SoundEngine {
 
     toggle() {
         this.enabled = !this.enabled;
-        const icon = document.getElementById('sound-toggle');
-        if (icon) {
-            icon.innerHTML = this.enabled ? 
-                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>` : 
-                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+        const soundBtn = document.getElementById('menu-btn-sound');
+        if (soundBtn) {
+            const iconOn = soundBtn.querySelector('.icon-sound-on');
+            const iconOff = soundBtn.querySelector('.icon-sound-off');
+            const label = soundBtn.querySelector('span');
+            if (iconOn && iconOff) {
+                if (this.enabled) {
+                    iconOn.style.display = 'inline-block';
+                    iconOff.style.display = 'none';
+                    if (label) label.innerText = 'Sound';
+                } else {
+                    iconOn.style.display = 'none';
+                    iconOff.style.display = 'inline-block';
+                    if (label) label.innerText = 'Muted';
+                }
+            }
         }
         
         if (this.ctx) {

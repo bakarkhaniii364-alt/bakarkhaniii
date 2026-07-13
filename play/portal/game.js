@@ -15,6 +15,7 @@ let pCameraBlue, pCameraOrange;
     let startTime = 0;
     let portalsFired = 0;
     let mouseLocked = false;
+    let isPaused = false;
     let isMovingElevator = false;
     let elevatorHumSound = null;
 
@@ -1282,6 +1283,10 @@ function updateGunSway() {
 
 // ----------------- Core Engine Initialization -----------------
 function init() {
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    if (isMobile) {
+        document.body.classList.add('is-mobile-device');
+    }
     const container = document.getElementById('canvas-container');
     
     scene = new THREE.Scene();
@@ -1384,6 +1389,13 @@ function init() {
 
 function animate() {
     requestAnimationFrame(animate);
+
+    if (isPaused) {
+        // Render static frame
+        renderer.setRenderTarget(null);
+        renderer.render(scene, camera);
+        return;
+    }
 
     const dt = Math.min(clock.getDelta(), 0.08); // cap step delta to prevent clipping
     const totalTime = clock.getElapsedTime();
@@ -1511,9 +1523,18 @@ function setupInputListeners() {
         if (!isMobile) {
             document.body.requestPointerLock();
         }
+        isPaused = false;
         sfx.init();
         startTime = clock.getElapsedTime();
         showSubtitle("TEST CHAMBERS COMMENCED. PORTAL MECHANISM ONLINE.");
+        
+        // Sync pause button UI
+        const pauseBtn = document.getElementById('menu-btn-pause');
+        if (pauseBtn) {
+            pauseBtn.querySelector('.icon-pause').style.display = 'inline-block';
+            pauseBtn.querySelector('.icon-play').style.display = 'none';
+            pauseBtn.querySelector('span').innerText = 'Pause';
+        }
     });
 
     restartBtn.addEventListener('click', () => {
@@ -1526,6 +1547,15 @@ function setupInputListeners() {
         if (document.pointerLockElement === document.body) {
             mouseLocked = true;
             overlay.style.display = 'none';
+            isPaused = false;
+            
+            // Sync pause button UI
+            const pauseBtn = document.getElementById('menu-btn-pause');
+            if (pauseBtn) {
+                pauseBtn.querySelector('.icon-pause').style.display = 'inline-block';
+                pauseBtn.querySelector('.icon-play').style.display = 'none';
+                pauseBtn.querySelector('span').innerText = 'Pause';
+            }
         } else {
             mouseLocked = false;
             // Only show menu if the level is not transitioning or completed
@@ -1533,14 +1563,68 @@ function setupInputListeners() {
                 overlay.style.display = 'flex';
                 overlay.style.opacity = '1';
                 startBtn.innerText = "Resume Test Protocol";
+                isPaused = true;
+                
+                // Sync pause button UI
+                const pauseBtn = document.getElementById('menu-btn-pause');
+                if (pauseBtn) {
+                    pauseBtn.querySelector('.icon-pause').style.display = 'none';
+                    pauseBtn.querySelector('.icon-play').style.display = 'inline-block';
+                    pauseBtn.querySelector('span').innerText = 'Resume';
+                }
             }
         }
     });
 
-    // Sound toggle
-    const soundBtn = document.getElementById('sound-toggle');
+    // Pause button click handler
+    const pauseBtn = document.getElementById('menu-btn-pause');
+    if (pauseBtn) {
+        pauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (levelComplete || gameFinished) return;
+            
+            isPaused = !isPaused;
+            if (isPaused) {
+                overlay.style.display = 'flex';
+                overlay.style.opacity = '1';
+                startBtn.innerText = "Resume Test Protocol";
+                pauseBtn.querySelector('.icon-pause').style.display = 'none';
+                pauseBtn.querySelector('.icon-play').style.display = 'inline-block';
+                pauseBtn.querySelector('span').innerText = 'Resume';
+                if (!isMobile && document.pointerLockElement === document.body) {
+                    document.exitPointerLock();
+                }
+            } else {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 500);
+                pauseBtn.querySelector('.icon-pause').style.display = 'inline-block';
+                pauseBtn.querySelector('.icon-play').style.display = 'none';
+                pauseBtn.querySelector('span').innerText = 'Pause';
+                if (!isMobile) {
+                    document.body.requestPointerLock();
+                }
+            }
+        });
+    }
+
+    // Sound button click handler
+    const soundBtn = document.getElementById('menu-btn-sound');
     if (soundBtn) {
-        soundBtn.addEventListener('click', () => sfx.toggle());
+        soundBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sfx.toggle();
+        });
+    }
+
+    // Exit button click handler
+    const exitBtn = document.getElementById('menu-btn-exit');
+    if (exitBtn) {
+        exitBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (confirm("Exit Chamber and return to projects hub?")) {
+                location.href = '../../index.html';
+            }
+        });
     }
     // Window resize
     window.addEventListener('resize', () => {

@@ -224,39 +224,52 @@ body, html {
 }
 
 /* Control Buttons & Sound */
-.top-right-controls {
+.game-menu-bar {
     position: absolute;
-    top: 25px;
-    right: 25px;
-    z-index: 100;
+    top: 20px;
+    right: 20px;
+    z-index: 10000; /* above overlay */
     display: flex;
-    gap: 12px;
-}
-
-.ctrl-icon-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    gap: 8px;
+    background: rgba(10, 15, 22, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    color: white;
+    padding: 6px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.menu-bar-btn {
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    backdrop-filter: blur(12px);
-    transition: all 0.2s ease;
-    font-size: 18px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    font-family: inherit;
 }
 
-.ctrl-icon-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+.menu-bar-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    transform: translateY(-1px);
 }
 
-.ctrl-icon-btn:active {
+.menu-bar-btn:active {
     transform: translateY(0);
+}
+
+#menu-btn-exit:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
 }
 
 /* Menus and Screens */
@@ -270,7 +283,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 900; /* slightly lower to keep menu bar clickable */
     transition: opacity 0.5s ease;
 }
 
@@ -538,10 +551,8 @@ input:checked + .slider:before {
 #m-btn-orange { border-color: var(--orange-portal); color: var(--orange-portal); box-shadow: 0 4px 15px rgba(255, 132, 0, 0.25); }
 
 /* Responsive adjustments */
-@media (max-width: 950px), (hover: none) and (pointer: coarse) {
-    #hud { display: none; }
-    #mobile-controls { display: block; }
-}
+body.is-mobile-device #hud { display: none; }
+body.is-mobile-device #mobile-controls { display: block; }
 
 /* Mobile Landscape Optimized Layout */
 @media (max-width: 950px) and (orientation: landscape), (hover: none) and (pointer: coarse) and (orientation: landscape) {
