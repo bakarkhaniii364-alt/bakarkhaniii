@@ -372,8 +372,9 @@ function initPortals() {
     const ringGeo = new THREE.RingGeometry(0.6, 0.78, 48);
     ringGeo.scale(1.0, 1.7, 1.0);
 
-    // Match render targets to screen size so screen-space UVs sample correctly (scaled by devicePixelRatio for highres)
-    const pixelRatio = window.devicePixelRatio || 1;
+    // Match render targets to screen size so screen-space UVs sample correctly (capped for mobile performance)
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    const pixelRatio = isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5);
     const rtW = Math.max(window.innerWidth * pixelRatio, 1);
     const rtH = Math.max(window.innerHeight * pixelRatio, 1);
     renderTargetBlue   = new THREE.WebGLMultisampleRenderTarget(rtW, rtH, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter });
@@ -1288,11 +1289,14 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
     
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    renderer = new THREE.WebGLRenderer({ antialias: !isMobile });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
+    renderer.shadowMap.enabled = !isMobile;
+    if (!isMobile) {
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
     container.appendChild(renderer.domElement);
 
     clock = new THREE.Clock();
@@ -1538,10 +1542,12 @@ function setupInputListeners() {
     window.addEventListener('resize', () => {
         const w = window.innerWidth;
         const h = window.innerHeight;
-        const pr = window.devicePixelRatio || 1;
+        const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+        const pr = isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
         renderer.setSize(w, h);
+        renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
         // Keep portal render targets in sync with screen size
         if (renderTargetBlue) renderTargetBlue.setSize(w * pr, h * pr);
         if (renderTargetOrange) renderTargetOrange.setSize(w * pr, h * pr);
@@ -1647,13 +1653,17 @@ function setupMobileControls() {
         for (let i = 0; i < e.touches.length; i++) {
             const touch = e.touches[i];
             if (touch.clientX > window.innerWidth / 2) {
+                // Ignore if touch started on an action button to prevent camera jumps
+                if (touch.target.classList.contains('m-btn') || touch.target.closest('.mobile-btn-container')) {
+                    continue;
+                }
                 camTouchId = touch.identifier;
                 lastCamX = touch.clientX;
                 lastCamY = touch.clientY;
                 break;
             }
         }
-    });
+    }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
         for (let i = 0; i < e.touches.length; i++) {
@@ -1670,22 +1680,40 @@ function setupMobileControls() {
                 lastCamY = touch.clientY;
             }
         }
-    });
+    }, { passive: true });
 
-    // Mobile Actions
-    document.getElementById('m-btn-blue').addEventListener('click', () => tryFirePortal(true));
-    document.getElementById('m-btn-orange').addEventListener('click', () => tryFirePortal(false));
-    document.getElementById('m-btn-grab').addEventListener('click', () => tryGrabObject());
+    // Mobile Actions - Trigger instantly on touchstart/mousedown to eliminate 300ms click delay
+    const bindMobileBtn = (id, actionFn) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const trigger = (e) => {
+            e.preventDefault();
+            actionFn();
+        };
+        el.addEventListener('touchstart', trigger, { passive: false });
+        el.addEventListener('mousedown', trigger);
+    };
+
+    bindMobileBtn('m-btn-blue', () => tryFirePortal(true));
+    bindMobileBtn('m-btn-orange', () => tryFirePortal(false));
+    bindMobileBtn('m-btn-grab', () => tryGrabObject());
     
     const jumpBtn = document.getElementById('m-btn-jump');
-    jumpBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keys.space = true;
-    });
-    jumpBtn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keys.space = false;
-    });
+    if (jumpBtn) {
+        const pressJump = (e) => {
+            e.preventDefault();
+            keys.space = true;
+        };
+        const releaseJump = (e) => {
+            e.preventDefault();
+            keys.space = false;
+        };
+        jumpBtn.addEventListener('touchstart', pressJump, { passive: false });
+        jumpBtn.addEventListener('touchend', releaseJump);
+        jumpBtn.addEventListener('mousedown', pressJump);
+        jumpBtn.addEventListener('mouseup', releaseJump);
+        jumpBtn.addEventListener('mouseleave', releaseJump);
+    }
 }
 
 // ----------------- Initialization Trigger -----------------
