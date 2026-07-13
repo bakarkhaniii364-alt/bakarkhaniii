@@ -376,3 +376,209 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   })();
 });
+
+// ============================================================
+// SCROLL REVEALS, CARD STACKS & TYPEWRITER ANIMATIONS
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // 1. Section reveals on scroll (Intersection Observer)
+  const setupSectionReveals = () => {
+    const sections = document.querySelectorAll('.section');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+  };
+
+  // 2. Typewriter heading generator (Intersection Observer)
+  const setupTypewriters = () => {
+    const headings = document.querySelectorAll('.typewriter-heading');
+    if (!headings.length) return;
+
+    headings.forEach(heading => {
+      // Get raw text (preserving HTML entities like &amp;)
+      const rawText = heading.innerHTML.trim();
+      heading.setAttribute('data-text', rawText);
+      heading.innerHTML = ''; // Clear text
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const heading = entry.target;
+          if (heading.classList.contains('typed')) return;
+          heading.classList.add('typed');
+          heading.classList.add('typing');
+
+          const text = heading.getAttribute('data-text') || '';
+          
+          let index = 0;
+          const type = () => {
+            if (index < text.length) {
+              if (text.slice(index).startsWith('&amp;')) {
+                heading.innerHTML += '&';
+                index += 5;
+              } else if (text.slice(index).startsWith('&ldquo;')) {
+                heading.innerHTML += '“';
+                index += 7;
+              } else if (text.slice(index).startsWith('&rdquo;')) {
+                heading.innerHTML += '”';
+                index += 7;
+              } else if (text.slice(index).startsWith('&mdash;')) {
+                heading.innerHTML += '—';
+                index += 7;
+              } else {
+                heading.innerHTML += text[index];
+                index++;
+              }
+              setTimeout(type, 30 + Math.random() * 25);
+            } else {
+              // Typing complete: remove blinking cursor
+              heading.classList.remove('typing');
+            }
+          };
+
+          setTimeout(type, 200);
+          observer.unobserve(heading);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    headings.forEach(heading => observer.observe(heading));
+  };
+
+  // 3. Mobile stacked card swiper
+  const setupCardStacks = () => {
+    const grids = document.querySelectorAll('.card-grid');
+    if (!grids.length) return;
+
+    grids.forEach(grid => {
+      const cards = Array.from(grid.querySelectorAll('.product-card'));
+      if (cards.length <= 1) return;
+
+      // Enable stack mode class only on mobile viewports
+      grid.classList.add('stack-mode');
+
+      let activeIndex = 0;
+
+      const updateStack = () => {
+        cards.forEach((card, index) => {
+          const relIndex = (index - activeIndex + cards.length) % cards.length;
+          card.classList.remove('swipe-out-left', 'swipe-out-right');
+
+          // Check if we are actually on a mobile viewport size
+          if (window.innerWidth <= 768) {
+            if (relIndex === 0) {
+              card.style.transform = 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
+              card.style.zIndex = '10';
+              card.style.opacity = '1';
+              card.style.pointerEvents = 'auto';
+            } else if (relIndex === 1) {
+              card.style.transform = 'translate3d(12px, 15px, 0) scale(0.95) rotate(2deg)';
+              card.style.zIndex = '9';
+              card.style.opacity = '0.92';
+              card.style.pointerEvents = 'none';
+            } else if (relIndex === 2) {
+              card.style.transform = 'translate3d(-12px, 30px, 0) scale(0.9) rotate(-2deg)';
+              card.style.zIndex = '8';
+              card.style.opacity = '0.84';
+              card.style.pointerEvents = 'none';
+            } else {
+              card.style.transform = 'translate3d(0, 40px, 0) scale(0.85) rotate(0deg)';
+              card.style.zIndex = '1';
+              card.style.opacity = '0';
+              card.style.pointerEvents = 'none';
+            }
+          } else {
+            // Reset inline styles on desktop viewports so default CSS grid takes over
+            card.style.transform = '';
+            card.style.zIndex = '';
+            card.style.opacity = '';
+            card.style.pointerEvents = '';
+          }
+        });
+      };
+
+      updateStack();
+
+      // Recalculate on resize
+      window.addEventListener('resize', updateStack, { passive: true });
+
+      // Touch events for swiping
+      let startX = 0;
+      let startY = 0;
+      let isSwiping = false;
+
+      grid.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 768) return;
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        isSwiping = true;
+      }, { passive: true });
+
+      grid.addEventListener('touchmove', (e) => {
+        if (!isSwiping || window.innerWidth > 768) return;
+        const touch = e.touches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+
+        // Visual drag offset on top card
+        if (Math.abs(dx) > 10) {
+          const topCard = cards[activeIndex];
+          topCard.style.transform = `translate3d(${dx}px, ${dy * 0.25}px, 0) rotate(${dx * 0.05}deg) scale(1)`;
+        }
+      }, { passive: true });
+
+      grid.addEventListener('touchend', (e) => {
+        if (!isSwiping || window.innerWidth > 768) return;
+        isSwiping = false;
+
+        const touch = e.changedTouches[0];
+        const dx = touch.clientX - startX;
+        const threshold = 70; // px threshold to trigger swipe
+
+        const topCard = cards[activeIndex];
+
+        if (dx > threshold) {
+          // Swipe right
+          topCard.classList.add('swipe-out-right');
+          setTimeout(() => {
+            activeIndex = (activeIndex + 1) % cards.length;
+            updateStack();
+          }, 350);
+        } else if (dx < -threshold) {
+          // Swipe left
+          topCard.classList.add('swipe-out-left');
+          setTimeout(() => {
+            activeIndex = (activeIndex + 1) % cards.length;
+            updateStack();
+          }, 350);
+        } else {
+          // Reset card position with smooth transitions
+          topCard.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+          updateStack();
+          setTimeout(() => { topCard.style.transition = ''; }, 300);
+        }
+      });
+    });
+  };
+
+  // Run all initialization
+  setupSectionReveals();
+  setupTypewriters();
+  setupCardStacks();
+});

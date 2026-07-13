@@ -1499,6 +1499,7 @@ function animate() {
 
 // ----------------- Controls & Input Bindings -----------------
 function setupInputListeners() {
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     // Start button
     const startBtn = document.getElementById('btn-start');
     const restartBtn = document.getElementById('btn-restart');
@@ -1507,7 +1508,9 @@ function setupInputListeners() {
     startBtn.addEventListener('click', () => {
         overlay.style.opacity = '0';
         setTimeout(() => overlay.style.display = 'none', 500);
-        document.body.requestPointerLock();
+        if (!isMobile) {
+            document.body.requestPointerLock();
+        }
         sfx.init();
         startTime = clock.getElapsedTime();
         showSubtitle("TEST CHAMBERS COMMENCED. PORTAL MECHANISM ONLINE.");
@@ -1519,6 +1522,7 @@ function setupInputListeners() {
 
     // Pointer Lock Change listener (handle Esc key press and clicks)
     document.addEventListener('pointerlockchange', () => {
+        if (isMobile) return;
         if (document.pointerLockElement === document.body) {
             mouseLocked = true;
             overlay.style.display = 'none';
@@ -1587,6 +1591,7 @@ function setupInputListeners() {
 
     // Mouse Portal firing / locking click
     window.addEventListener('mousedown', (e) => {
+        if (isMobile) return;
         if (document.pointerLockElement !== document.body) {
             // Re-lock if menu is hidden and user clicked the canvas
             if (overlay.style.display === 'none' && !levelComplete && !gameFinished) {
@@ -1609,17 +1614,29 @@ function setupMobileControls() {
     if (!joy || !handle) return;
 
     const touchState = { active: false, startX: 0, startY: 0 };
+    let joyTouchId = null;
 
     joy.addEventListener('touchstart', (e) => {
+        // Find the touch that started inside the joystick container
+        const touch = e.changedTouches[0];
+        joyTouchId = touch.identifier;
         touchState.active = true;
-        const touch = e.touches[0];
         touchState.startX = touch.clientX;
         touchState.startY = touch.clientY;
-    });
+    }, { passive: false });
 
     joy.addEventListener('touchmove', (e) => {
         if (!touchState.active) return;
-        const touch = e.touches[0];
+        // Find the touch matching joyTouchId
+        let touch = null;
+        for (let i = 0; i < e.touches.length; i++) {
+            if (e.touches[i].identifier === joyTouchId) {
+                touch = e.touches[i];
+                break;
+            }
+        }
+        if (!touch) return;
+
         const dx = touch.clientX - touchState.startX;
         const dy = touch.clientY - touchState.startY;
         
@@ -1636,13 +1653,26 @@ function setupMobileControls() {
         keys.s = hY > 15;
         keys.a = hX < -15;
         keys.d = hX > 15;
-    });
+    }, { passive: false });
 
-    joy.addEventListener('touchend', () => {
+    const endJoystick = (e) => {
+        if (!touchState.active) return;
+        let joyEnded = false;
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === joyTouchId) {
+                joyEnded = true;
+                break;
+            }
+        }
+        if (!joyEnded) return;
+
         touchState.active = false;
+        joyTouchId = null;
         handle.style.transform = 'translate(-50%, -50%)';
         keys.w = keys.s = keys.a = keys.d = false;
-    });
+    };
+    joy.addEventListener('touchend', endJoystick, { passive: true });
+    joy.addEventListener('touchcancel', endJoystick, { passive: true });
 
     // Touch swipe camera looking (right side of screen)
     let camTouchId = null;
@@ -1681,6 +1711,17 @@ function setupMobileControls() {
             }
         }
     }, { passive: true });
+
+    const endCameraTouch = (e) => {
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            if (e.changedTouches[i].identifier === camTouchId) {
+                camTouchId = null;
+                break;
+            }
+        }
+    };
+    window.addEventListener('touchend', endCameraTouch, { passive: true });
+    window.addEventListener('touchcancel', endCameraTouch, { passive: true });
 
     // Mobile Actions - Trigger instantly on touchstart/mousedown to eliminate 300ms click delay
     const bindMobileBtn = (id, actionFn) => {
