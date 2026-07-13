@@ -199,6 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scrollThumb = document.createElement('div');
     scrollThumb.className = 'custom-scroll-thumb';
+    const scrollThumbInner = document.createElement('div');
+    scrollThumbInner.className = 'custom-scroll-thumb-inner';
+    scrollThumb.appendChild(scrollThumbInner);
 
     const scrollReadout = document.createElement('div');
     scrollReadout.className = 'custom-scroll-readout';
@@ -349,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Track Click scrolling
     scrollBar.addEventListener('click', (e) => {
       // Don't trigger if clicked on thumb or milestone
-      if (e.target === scrollThumb || e.target.classList.contains('custom-scroll-milestone') || e.target.closest('.custom-scroll-milestone')) return;
+      if (scrollThumb.contains(e.target) || e.target.classList.contains('custom-scroll-milestone') || e.target.closest('.custom-scroll-milestone')) return;
       
       const rect = scrollBar.getBoundingClientRect();
       const clickY = e.clientY - rect.top;
