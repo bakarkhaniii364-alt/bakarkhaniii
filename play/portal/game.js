@@ -1294,7 +1294,6 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
     
-    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     renderer = new THREE.WebGLRenderer({ antialias: !isMobile });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
