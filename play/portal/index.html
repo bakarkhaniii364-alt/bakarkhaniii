@@ -21,87 +21,119 @@
     </div>
 
     <!-- GLaDOS Subtitles -->
-    <div id="subtitle-box">Welcome to the Aperture Science Computer-Aided Enrichment Center.</div>
+    <div id="subtitle-box"></div>
 
-    <!-- Industrial HUD system -->
+    <!-- Minimal Bottom HUD: just portal charge indicators -->
     <div id="hud">
-        <div class="hud-card">
-            <h1>Aperture Laboratories</h1>
-            <h2 id="hud-status">STANDBY</h2>
-            
-            <div class="hud-row">
-                <span class="hud-label">Portal Blue:</span>
-                <span class="hud-value" id="hud-blue">INACTIVE</span>
-            </div>
-            <div class="hud-row">
-                <span class="hud-label">Portal Orange:</span>
-                <span class="hud-value" id="hud-orange">INACTIVE</span>
-            </div>
-            <div id="hud-tracking-blue" class="hud-row-tracking" style="display: none;">
-                <span class="hud-sub-label" style="color: #00bcff;">Blue Track:</span>
-                <span class="hud-sub-value" id="hud-track-blue-val">-</span>
-            </div>
-            <div id="hud-tracking-orange" class="hud-row-tracking" style="display: none;">
-                <span class="hud-sub-label" style="color: #ff8400;">Orange Track:</span>
-                <span class="hud-sub-value" id="hud-track-orange-val">-</span>
-            </div>
-            <div class="hud-row">
-                <span class="hud-label">Testing Loop:</span>
-                <span class="hud-value" style="color: #00e676;">ONLINE</span>
-            </div>
+        <div class="hud-portal-indicator" id="hud-portal-blue">
+            <div class="portal-pip pip-blue"></div>
+            <div class="portal-label">BLUE</div>
+            <div class="portal-status" id="hud-blue">INACTIVE</div>
+        </div>
+        <div class="hud-portal-indicator" id="hud-portal-orange">
+            <div class="portal-pip pip-orange"></div>
+            <div class="portal-label">ORANGE</div>
+            <div class="portal-status" id="hud-orange">INACTIVE</div>
         </div>
     </div>
 
-    <!-- Top Game Menu Bar (Pause, Sound, Exit) -->
-    <div class="game-menu-bar">
-        <button id="menu-btn-pause" class="menu-bar-btn" title="Pause Game">
-            <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            <svg class="icon-play" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span>Pause</span>
-        </button>
-        <button id="menu-btn-sound" class="menu-bar-btn" title="Toggle Sound">
-            <svg class="icon-sound-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-            <svg class="icon-sound-off" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            <span>Sound</span>
-        </button>
-        <button id="menu-btn-exit" class="menu-bar-btn" title="Exit to Hub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-            <span>Exit</span>
-        </button>
-    </div>
+    <!-- Mobile-only pause button (top-left, ESC equivalent) -->
+    <button id="mobile-pause-btn" class="mobile-pause-btn" title="Menu">
+        <span></span><span></span><span></span>
+    </button>
 
-    <!-- Full-screen Menu & Stats -->
-    <div id="overlay-screen">
-        <!-- Start screen -->
-        <div class="menu-box" id="menu-start">
-            <h2>Aperture Simulation</h2>
-            <p>Welcome, test subject. You are authorized to begin quantum-loop mechanics test track sequences. Please confirm physical input mappings to initiate.</p>
-            
-            <div class="controls-list">
-                <div><span>Move around</span><span class="key">W A S D</span></div>
-                <div><span>Look direction</span><span class="key">Mouse / Swipe</span></div>
-                <div><span>Quantum Portal (Blue)</span><span class="key">Left Click</span></div>
-                <div><span>Quantum Portal (Orange)</span><span class="key">Right Click</span></div>
-                <div><span>Interact / Grab Cube</span><span class="key">E / F</span></div>
-                <div><span>Jump / Lift-off</span><span class="key">Space</span></div>
+    <!-- ========== LEFT SLIDE-IN PAUSE MENU ========== -->
+    <div id="pause-menu" class="pause-menu">
+        <div class="pause-menu-backdrop"></div>
+        <div class="pause-menu-panel">
+            <div class="pause-menu-logo">
+                <div class="pause-logo-mark">⊕</div>
+                <div class="pause-logo-text">
+                    <span class="pause-logo-title">APERTURE</span>
+                    <span class="pause-logo-sub">SCIENCE ENRICHMENT CENTER</span>
+                </div>
             </div>
 
+            <div class="pause-menu-status">
+                <div class="status-line">
+                    <span class="status-label">PORTAL BLUE</span>
+                    <span class="status-val" id="pause-hud-blue">INACTIVE</span>
+                </div>
+                <div class="status-line">
+                    <span class="status-label">PORTAL ORANGE</span>
+                    <span class="status-val" id="pause-hud-orange">INACTIVE</span>
+                </div>
+            </div>
 
-            <button class="btn" id="btn-start">Initiate Test Protocol</button>
+            <nav class="pause-nav">
+                <button class="pause-nav-item" id="pause-nav-resume">
+                    <span class="pause-nav-icon">▶</span>
+                    <span class="pause-nav-label">Resume</span>
+                </button>
+                <button class="pause-nav-item" id="pause-nav-sound">
+                    <span class="pause-nav-icon icon-sound-on">♪</span>
+                    <span class="pause-nav-label">Sound: On</span>
+                </button>
+                <button class="pause-nav-item danger" id="pause-nav-exit">
+                    <span class="pause-nav-icon">⏏</span>
+                    <span class="pause-nav-label">Exit to Hub</span>
+                </button>
+            </nav>
+
+            <div class="pause-menu-hint">Press <span class="hint-key">ESC</span> to resume</div>
+        </div>
+    </div>
+
+    <!-- ========== START / VICTORY OVERLAY ========== -->
+    <div id="overlay-screen">
+        <!-- Cinematic bars top/bottom -->
+        <div class="cinematic-bar top"></div>
+        <div class="cinematic-bar bottom"></div>
+
+        <!-- Start screen -->
+        <div class="overlay-panel" id="menu-start">
+            <div class="overlay-eyebrow">APERTURE SCIENCE // TEST CHAMBER SERIES</div>
+            <h1 class="overlay-title">Quantum<br>Portal Chambers</h1>
+            <p class="overlay-desc">You are authorised to commence the testing sequence. Confirm input mappings below.</p>
+
+            <div class="controls-grid">
+                <div class="ctrl-row"><span>Move</span><span class="key">W A S D</span></div>
+                <div class="ctrl-row"><span>Look</span><span class="key">Mouse / Drag</span></div>
+                <div class="ctrl-row"><span>Blue Portal</span><span class="key">Left Click</span></div>
+                <div class="ctrl-row"><span>Orange Portal</span><span class="key">Right Click</span></div>
+                <div class="ctrl-row"><span>Grab Cube</span><span class="key">E / F</span></div>
+                <div class="ctrl-row"><span>Jump</span><span class="key">Space</span></div>
+                <div class="ctrl-row mobile-hint"><span>Pause Menu</span><span class="key">ESC / ☰</span></div>
+            </div>
+
+            <button class="overlay-btn" id="btn-start">
+                <span class="overlay-btn-text">Begin Testing</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
         </div>
 
         <!-- Victory Screen -->
-        <div class="menu-box" id="menu-victory" style="display: none;">
-            <h2 style="color: #ffaa00;">Test Cleared</h2>
-            <p>Outstanding. You have successfully bypassed all hazardous loops using quantum gateways. Aperture Science congratulates you on remaining alive.</p>
-            
-            <div class="controls-list" style="text-align: center;">
-                <h3 style="margin-top: 0; color: #00bcff; text-transform: uppercase; font-size: 14px;">Chamber Statistics</h3>
-                <p>Time Elapsed: <span id="stat-time" style="font-weight: bold; color: #fff;">0</span> seconds</p>
-                <p>Portals Placed: <span id="stat-portals" style="font-weight: bold; color: #fff;">0</span></p>
+        <div class="overlay-panel" id="menu-victory" style="display: none;">
+            <div class="overlay-eyebrow victory-eyebrow">TEST COMPLETE // DATA LOGGED</div>
+            <h1 class="overlay-title victory-title">Test<br>Cleared</h1>
+            <p class="overlay-desc">Outstanding. You have successfully navigated all quantum gateway test chambers. Aperture Science congratulates you on remaining alive.</p>
+
+            <div class="stats-block">
+                <div class="stat-item">
+                    <span class="stat-num" id="stat-time">0</span>
+                    <span class="stat-label">seconds elapsed</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num" id="stat-portals">0</span>
+                    <span class="stat-label">portals placed</span>
+                </div>
             </div>
 
-            <button class="btn" id="btn-restart">Re-enter Chambers</button>
+            <button class="overlay-btn" id="btn-restart">
+                <span class="overlay-btn-text">Re-enter Chambers</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>
+            </button>
         </div>
     </div>
 
@@ -111,10 +143,22 @@
             <div class="joystick-handle" id="joystick-handle"></div>
         </div>
         <div class="mobile-btn-container">
-            <div class="m-btn" id="m-btn-blue">Blue</div>
-            <div class="m-btn" id="m-btn-orange">Orange</div>
-            <div class="m-btn" id="m-btn-grab">Grab</div>
-            <div class="m-btn" id="m-btn-jump">Jump</div>
+            <div class="m-btn" id="m-btn-blue">
+                <span class="m-btn-icon">○</span>
+                <span class="m-btn-label">Blue</span>
+            </div>
+            <div class="m-btn" id="m-btn-orange">
+                <span class="m-btn-icon">○</span>
+                <span class="m-btn-label">Orange</span>
+            </div>
+            <div class="m-btn" id="m-btn-grab">
+                <span class="m-btn-icon">✦</span>
+                <span class="m-btn-label">Grab</span>
+            </div>
+            <div class="m-btn" id="m-btn-jump">
+                <span class="m-btn-icon">↑</span>
+                <span class="m-btn-label">Jump</span>
+            </div>
         </div>
     </div>
 

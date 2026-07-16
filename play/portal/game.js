@@ -13,6 +13,8 @@ let pCameraBlue, pCameraOrange;
     let levelComplete = false;
     let gameFinished = false;
     let startTime = 0;
+    let totalPlayTime = 0;
+    let lastUnpauseTime = 0;
     let portalsFired = 0;
     let mouseLocked = false;
     let isPaused = false;
@@ -513,7 +515,7 @@ function initPortals() {
 }
 
 function tryFirePortal(isBlue) {
-    if (isMovingElevator || gameFinished) return;
+    if (isMovingElevator || gameFinished || isPaused) return;
     
     sfx.playShoot(isBlue);
     portalsFired++;
@@ -810,15 +812,27 @@ function updateInteractiveElements() {
     // Button Activation Check
     if (floorButton && level.buttonPos) {
         let isPressed = false;
-        const distPlayer = player.position.distanceTo(level.buttonPos);
         
-        if (distPlayer < 1.6 && player.position.y < level.buttonPos.y + 1.2) {
+        // 2D horizontal distance and vertical height checks for player
+        const dxPlayer = player.position.x - level.buttonPos.x;
+        const dzPlayer = player.position.z - level.buttonPos.z;
+        const dist2DPlayer = Math.sqrt(dxPlayer * dxPlayer + dzPlayer * dzPlayer);
+        const feetY = player.position.y - 0.9;
+        const onButtonHeightPlayer = Math.abs(feetY - level.buttonPos.y) < 0.6;
+        
+        if (dist2DPlayer < 1.6 && onButtonHeightPlayer) {
             isPressed = true;
         }
 
+        // 2D horizontal distance and vertical height checks for companion cube
         if (companionCube && !companionCube.isHeld) {
-            const distCube = companionCube.mesh.position.distanceTo(level.buttonPos);
-            if (distCube < 1.6 && companionCube.mesh.position.y < level.buttonPos.y + 1.2) {
+            const dxCube = companionCube.mesh.position.x - level.buttonPos.x;
+            const dzCube = companionCube.mesh.position.z - level.buttonPos.z;
+            const dist2DCube = Math.sqrt(dxCube * dxCube + dzCube * dzCube);
+            const cubeBottomY = companionCube.mesh.position.y - 0.6;
+            const onButtonHeightCube = Math.abs(cubeBottomY - level.buttonPos.y) < 0.6;
+            
+            if (dist2DCube < 1.6 && onButtonHeightCube) {
                 isPressed = true;
             }
         }
@@ -915,6 +929,7 @@ function updateInteractiveElements() {
 
 // ----------------- Grabbing companion cube -----------------
 function tryGrabObject() {
+    if (isPaused) return;
     if (player.holding) {
         dropHeldObject();
         return;
@@ -1158,7 +1173,10 @@ function triggerVictoryScreen() {
     gameFinished = true;
     document.exitPointerLock();
     
-    const elapsed = Math.floor((clock.getElapsedTime() - startTime));
+    if (!isPaused) {
+        totalPlayTime += clock.getElapsedTime() - lastUnpauseTime;
+    }
+    const elapsed = Math.floor(totalPlayTime);
     document.getElementById('stat-time').innerText = elapsed;
     document.getElementById('stat-portals').innerText = portalsFired;
     
@@ -1516,11 +1534,26 @@ function setupInputListeners() {
     const restartBtn = document.getElementById('btn-restart');
     const overlay = document.getElementById('overlay-screen');
 
+    const setStartBtnText = (txt) => {
+        const btnTextEl = startBtn.querySelector('.btn-text');
+        if (btnTextEl) {
+            btnTextEl.innerText = txt;
+        } else {
+            startBtn.innerText = txt;
+        }
+    };
+
     startBtn.addEventListener('click', () => {
         overlay.style.opacity = '0';
         setTimeout(() => overlay.style.display = 'none', 500);
         if (!isMobile) {
             document.body.requestPointerLock();
+        }
+        if (isPaused) {
+            lastUnpauseTime = clock.getElapsedTime();
+        } else {
+            totalPlayTime = 0;
+            lastUnpauseTime = clock.getElapsedTime();
         }
         isPaused = false;
         sfx.init();
@@ -1547,6 +1580,7 @@ function setupInputListeners() {
             mouseLocked = true;
             overlay.style.display = 'none';
             isPaused = false;
+            lastUnpauseTime = clock.getElapsedTime();
             
             // Sync pause button UI
             const pauseBtn = document.getElementById('menu-btn-pause');
@@ -1561,7 +1595,9 @@ function setupInputListeners() {
             if (!levelComplete && !gameFinished) {
                 overlay.style.display = 'flex';
                 overlay.style.opacity = '1';
-                startBtn.innerText = "Resume Test Protocol";
+                setStartBtnText("Resume Test Protocol");
+                keys.w = keys.s = keys.a = keys.d = keys.space = false;
+                totalPlayTime += clock.getElapsedTime() - lastUnpauseTime;
                 isPaused = true;
                 
                 // Sync pause button UI
@@ -1586,10 +1622,12 @@ function setupInputListeners() {
             if (isPaused) {
                 overlay.style.display = 'flex';
                 overlay.style.opacity = '1';
-                startBtn.innerText = "Resume Test Protocol";
+                setStartBtnText("Resume Test Protocol");
                 pauseBtn.querySelector('.icon-pause').style.display = 'none';
                 pauseBtn.querySelector('.icon-play').style.display = 'inline-block';
                 pauseBtn.querySelector('span').innerText = 'Resume';
+                keys.w = keys.s = keys.a = keys.d = keys.space = false;
+                totalPlayTime += clock.getElapsedTime() - lastUnpauseTime;
                 if (!isMobile && document.pointerLockElement === document.body) {
                     document.exitPointerLock();
                 }
@@ -1599,6 +1637,7 @@ function setupInputListeners() {
                 pauseBtn.querySelector('.icon-pause').style.display = 'inline-block';
                 pauseBtn.querySelector('.icon-play').style.display = 'none';
                 pauseBtn.querySelector('span').innerText = 'Pause';
+                lastUnpauseTime = clock.getElapsedTime();
                 if (!isMobile) {
                     document.body.requestPointerLock();
                 }
@@ -1696,21 +1735,48 @@ function setupMobileControls() {
     
     if (!joy || !handle) return;
 
-    const touchState = { active: false, startX: 0, startY: 0 };
+    const touchState = { active: false };
     let joyTouchId = null;
+    let joyRect = null;
+    let joyCenterX = 0;
+    let joyCenterY = 0;
+
+    const updateJoystick = (touch) => {
+        const dx = touch.clientX - joyCenterX;
+        const dy = touch.clientY - joyCenterY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        const handleRadius = handle.offsetWidth / 2 || 27;
+        const maxDist = joyRect ? (joyRect.width / 2 - handleRadius) : 38;
+        const dist = Math.min(maxDist, distance);
+        const angle = Math.atan2(dy, dx);
+
+        const hX = Math.cos(angle) * dist;
+        const hY = Math.sin(angle) * dist;
+
+        handle.style.transform = `translate(calc(-50% + ${hX}px), calc(-50% + ${hY}px))`;
+
+        const threshold = 12;
+        keys.w = hY < -threshold;
+        keys.s = hY > threshold;
+        keys.a = hX < -threshold;
+        keys.d = hX > threshold;
+    };
 
     joy.addEventListener('touchstart', (e) => {
-        // Find the touch that started inside the joystick container
+        e.preventDefault();
         const touch = e.changedTouches[0];
         joyTouchId = touch.identifier;
         touchState.active = true;
-        touchState.startX = touch.clientX;
-        touchState.startY = touch.clientY;
+        joyRect = joy.getBoundingClientRect();
+        joyCenterX = joyRect.left + joyRect.width / 2;
+        joyCenterY = joyRect.top + joyRect.height / 2;
+        updateJoystick(touch);
     }, { passive: false });
 
     joy.addEventListener('touchmove', (e) => {
         if (!touchState.active) return;
-        // Find the touch matching joyTouchId
+        e.preventDefault();
         let touch = null;
         for (let i = 0; i < e.touches.length; i++) {
             if (e.touches[i].identifier === joyTouchId) {
@@ -1719,23 +1785,7 @@ function setupMobileControls() {
             }
         }
         if (!touch) return;
-
-        const dx = touch.clientX - touchState.startX;
-        const dy = touch.clientY - touchState.startY;
-        
-        const dist = Math.min(42, Math.sqrt(dx*dx + dy*dy));
-        const angle = Math.atan2(dy, dx);
-
-        const hX = Math.cos(angle) * dist;
-        const hY = Math.sin(angle) * dist;
-
-        handle.style.transform = `translate(calc(-50% + ${hX}px), calc(-50% + ${hY}px))`;
-
-        // Map joystick to keyboard inputs
-        keys.w = hY < -15;
-        keys.s = hY > 15;
-        keys.a = hX < -15;
-        keys.d = hX > 15;
+        updateJoystick(touch);
     }, { passive: false });
 
     const endJoystick = (e) => {
@@ -1763,11 +1813,19 @@ function setupMobileControls() {
     let lastCamY = 0;
 
     window.addEventListener('touchstart', (e) => {
+        if (isPaused || gameFinished || levelComplete) return;
+        if (camTouchId !== null) return;
+
         for (let i = 0; i < e.touches.length; i++) {
             const touch = e.touches[i];
             if (touch.clientX > window.innerWidth / 2) {
-                // Ignore if touch started on an action button to prevent camera jumps
-                if (touch.target.classList.contains('m-btn') || touch.target.closest('.mobile-btn-container')) {
+                // Ignore if touch started on menu elements or action buttons to prevent camera jumps
+                if (
+                    touch.target.classList.contains('m-btn') || 
+                    touch.target.closest('.mobile-btn-container') ||
+                    touch.target.closest('.game-menu-bar') ||
+                    touch.target.closest('.menu-box')
+                ) {
                     continue;
                 }
                 camTouchId = touch.identifier;
@@ -1779,9 +1837,12 @@ function setupMobileControls() {
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
+        if (isPaused || gameFinished || levelComplete) return;
+        let isCamTouch = false;
         for (let i = 0; i < e.touches.length; i++) {
             const touch = e.touches[i];
             if (touch.identifier === camTouchId) {
+                isCamTouch = true;
                 const dx = touch.clientX - lastCamX;
                 const dy = touch.clientY - lastCamY;
                 
@@ -1793,7 +1854,10 @@ function setupMobileControls() {
                 lastCamY = touch.clientY;
             }
         }
-    }, { passive: true });
+        if (isCamTouch) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 
     const endCameraTouch = (e) => {
         for (let i = 0; i < e.changedTouches.length; i++) {
@@ -1834,6 +1898,7 @@ function setupMobileControls() {
         };
         jumpBtn.addEventListener('touchstart', pressJump, { passive: false });
         jumpBtn.addEventListener('touchend', releaseJump);
+        jumpBtn.addEventListener('touchcancel', releaseJump);
         jumpBtn.addEventListener('mousedown', pressJump);
         jumpBtn.addEventListener('mouseup', releaseJump);
         jumpBtn.addEventListener('mouseleave', releaseJump);
